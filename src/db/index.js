@@ -1,4 +1,4 @@
-import mysql  from 'mysql2/promise';
+import mysql from 'mysql2/promise';
 
 const connection = mysql.createPool({
   host: process.env.MYSQL_HOST || 'localhost',
@@ -6,4 +6,4 @@ const connection = mysql.createPool({
   password: process.env.MYSQL_PASSWORD || 'password',
   database: process.env.MYSQL_DATABASE || 'api',
 });
-module.exports = connection;
+export default connection;

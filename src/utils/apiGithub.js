@@ -1,3 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const apiGithub = axios.create({ baseURL: "https://api.github.com/repos" });
+const apiGithub = axios.create({ baseURL: 'https://api.github.com/repos' });
+
+export default apiGithub;
