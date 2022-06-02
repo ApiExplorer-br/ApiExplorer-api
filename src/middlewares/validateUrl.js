@@ -15,4 +15,4 @@ const validateUrl = (req, res, next) => {
   return next();
 };
 
-export default validateUrl;
+export { validateUrl };
