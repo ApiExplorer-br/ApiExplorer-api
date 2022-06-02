@@ -1,12 +1,12 @@
 import express from 'express';
 
 import 'dotenv/config';
-import routes from './routes';
+import routes from './routes/index.js';
 
 const app = express();
-app.use(routes);
 app.use(express.json());
+app.use(routes);
 
 app.listen(3333, () => {
-  console.log('sss');
+  console.log('Server started on port 3333');
 });
