@@ -1,5 +1,10 @@
 import { connection } from '../db/index.js';
 
+export const getAllApiModel = async () => {
+  const [apis] = await connection.execute(`SELECT * FROM apis`);
+  return apis;
+};
+
 export const getApiByUrl = async (url) => {
   const [api] = await connection.execute(
     `SELECT * FROM apis WHERE url_repo = ?`,
@@ -7,6 +12,7 @@ export const getApiByUrl = async (url) => {
   );
   return api;
 };
+
 export const createApiModel = async (
   name,
   url_repo,

@@ -1,7 +1,22 @@
 import { AppError } from '../errors/AppError.js';
-import { createApiModel, getApiByUrl } from '../models/ApisModel.js';
+import {
+  createApiModel,
+  getAllApiModel,
+  getApiByUrl,
+} from '../models/ApisModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
+
+export const getAllApisService = async () => {
+  const apis = await getAllApiModel();
+
+  return apis.map((api) => {
+    return {
+      ...api,
+      technologies: JSON.parse(api.technologies),
+    };
+  });
+};
 
 export const createApiService = async (
   userRepo,
