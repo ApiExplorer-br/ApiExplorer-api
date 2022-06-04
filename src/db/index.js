@@ -6,4 +6,4 @@ const connection = mysql.createPool({
   password: process.env.MYSQL_PASSWORD || 'password',
   database: process.env.MYSQL_DATABASE || 'api',
 });
-export default connection;
+export { connection };
