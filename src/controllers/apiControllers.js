@@ -7,6 +7,7 @@ export const getAllApis = async (_request, response) => {
   const apis = await getAllApisService();
   return response.status(200).json(apis);
 };
+
 export const createApi = async (request, response) => {
   const { url, category, description, user_id } = request.body;
   const userRepo = url.split('.com/')[1];
