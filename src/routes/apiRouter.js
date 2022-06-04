@@ -12,7 +12,7 @@ const apiRouter = express.Router();
 
 apiRouter.get('/', getAllApis);
 apiRouter.get('/:id', getApiById);
-apiRouter.get('/:category', getApiByCategory);
+apiRouter.get('/list/:category', getApiByCategory);
 apiRouter.post('/', validateUrl, createApi);
 
 export { apiRouter };
