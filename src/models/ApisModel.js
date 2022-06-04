@@ -14,6 +14,7 @@ export const getApiByUrl = async (url) => {
 };
 
 export const createApiModel = async (
+  id,
   name,
   url_repo,
   technologies,
@@ -23,7 +24,7 @@ export const createApiModel = async (
   user_id
 ) => {
   await connection.query(
-    `INSERT INTO apis (name, url_repo, technologies, category, description, rating, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [name, url_repo, technologies, category, description, rating, user_id]
+    `INSERT INTO apis (id, name, url_repo, technologies, category, description, rating, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [id, name, url_repo, technologies, category, description, rating, user_id]
   );
 };

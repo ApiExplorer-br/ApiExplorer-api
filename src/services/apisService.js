@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { AppError } from '../errors/AppError.js';
 import {
   createApiModel,
@@ -37,13 +39,15 @@ export const createApiService = async (
 
   const repoData = await apiGithub.get(`/${userRepo}`);
   const filteredData = [repoData.data].map((repo) => ({
+    id: uuidv4(),
     name: repo.name,
     url_repo: repo.html_url,
     technologies: JSON.stringify(technologies),
     category,
     description,
     rating: 0,
+    user_id,
   }));
   const values = Object.values(filteredData[0]);
-  return createApiModel(...values, user_id);
+  return createApiModel(...values);
 };
