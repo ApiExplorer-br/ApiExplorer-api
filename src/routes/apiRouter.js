@@ -4,12 +4,14 @@ import {
   createApi,
   getAllApis,
   getApiByCategory,
+  getApiById,
 } from '../controllers/apiControllers.js';
 import { validateUrl } from '../middlewares/validateUrl.js';
 
 const apiRouter = express.Router();
 
 apiRouter.get('/', getAllApis);
+apiRouter.get('/:id', getApiById);
 apiRouter.get('/:category', getApiByCategory);
 apiRouter.post('/', validateUrl, createApi);
 

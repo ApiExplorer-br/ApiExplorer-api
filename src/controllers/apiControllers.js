@@ -15,6 +15,13 @@ export const getApiByCategory = async (request, response) => {
   return response.status(200).json(filteredApis);
 };
 
+export const getApiById = async (request, response) => {
+  const { id } = request.params;
+  const apis = await getAllApisService();
+  const filteredApis = apis.filter((api) => api.id === id);
+  return response.status(200).json(filteredApis);
+};
+
 export const createApi = async (request, response) => {
   const { url, category, description, user_id } = request.body;
   const userRepo = url.split('.com/')[1];
