@@ -37,6 +37,7 @@ CREATE TABLE
     name VARCHAR(255) NOT NULL,
     url_repo VARCHAR(255) NOT NULL,
     technologies VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL, 
     description VARCHAR(255),
     rating INT NOT NULL,
     url_deploy VARCHAR(255),
