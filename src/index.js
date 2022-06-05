@@ -8,7 +8,6 @@ import { router } from './routes/index.js';
 const app = express();
 app.use(express.json());
 app.use(router);
-
 app.use((err, _request, response, next) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({ message: err.message });

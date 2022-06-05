@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Laecio12/api#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "express": "^4.18.1",
