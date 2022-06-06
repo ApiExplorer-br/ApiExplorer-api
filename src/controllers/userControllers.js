@@ -1,4 +1,6 @@
-export const createUser = async (req, res) => {
-  const { name, url_github, profile, bio } = req.query;
-  console.log(name, url_github, profile, bio);
+import { createUserService } from '../services/userService.js';
+
+export const createUser = async ({ name, email, url_github, profile, bio }) => {
+  const user = await createUserService(name, email, url_github, profile, bio);
+  return user;
 };

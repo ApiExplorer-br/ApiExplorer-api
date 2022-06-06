@@ -1,19 +1,17 @@
-DROP DATABASE
-  IF EXISTS api;
+DROP DATABASE IF EXISTS heroku_23c00ddc2c8f145;
+CREATE DATABASE heroku_23c00ddc2c8f145;
 
-CREATE DATABASE
-  api;
-
-USE
-  api;
+USE heroku_23c00ddc2c8f145;
 
 CREATE TABLE
   users (
     id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     url_github VARCHAR(255) NOT NULL,
     profile VARCHAR(255) NOT NULL,
     bio VARCHAR(255),
+    created_at DATETIME DEFAULT NOW(),
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
 
@@ -27,6 +25,7 @@ CREATE TABLE
     description VARCHAR(255),
     rating INT NOT NULL,
     user_id VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
@@ -43,17 +42,19 @@ CREATE TABLE
     url_deploy VARCHAR(255),
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (api_id) REFERENCES apis (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
 
 INSERT INTO
-  users(id, name, url_github, profile, bio)
+  users(id, name, email, url_github, profile, bio)
 VALUES
   (
     'afbf3b6b-26e6-4167-801f-ba538aa35c6b',
     'NOME',
+    'example@user.com',
     'URL',
     'FOTO',
     'KKDKDKKDKDDK'

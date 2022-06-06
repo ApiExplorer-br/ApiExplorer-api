@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import { getUserByEmail } from '../services/userService.js';
+
+import { createUser } from './userControllers.js';
+
 const clientID = process.env.GITHUB_CLIENT_ID;
 const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
@@ -29,12 +33,24 @@ export const getDataUser = async (req, res) => {
     },
   });
 
-  const userData = [response.data].map(
-    (user) => `
-    name=${user.name}&
-    url_github=${user.html_url}&
-    profile=${user.avatar_url}&
-    bio=${user.bio}`
-  );
-  res.redirect(`/users?${userData}`);
+  const userExists = await getUserByEmail(response.data.email);
+
+  if (userExists.length) {
+    const user = {
+      ...userExists[0],
+      session: {
+        expire_in: Date.now() + 60 * 60 * 24 * 2 * 1000, // expire in 48 hours
+      },
+    };
+    return res.status(200).json({ user });
+  }
+  const userData = [response.data].map((user) => ({
+    name: user.name,
+    email: user.email,
+    url_github: user.html_url,
+    profile: user.avatar_url,
+    bio: user.bio,
+  }));
+  await createUser(...userData);
+  return res.status(201).json({ message: 'User created' });
 };
