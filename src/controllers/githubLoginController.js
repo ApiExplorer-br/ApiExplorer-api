@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { getUserByEmail } from '../services/userService.js';
+import { createSession } from '../utils/createSession.js';
 
 import { createUser } from './userControllers.js';
 
@@ -38,12 +39,11 @@ export const getDataUser = async (req, res) => {
   if (userExists.length) {
     const user = {
       ...userExists[0],
-      session: {
-        expire_in: Date.now() + 60 * 60 * 24 * 2 * 1000, // expire in 48 hours
-      },
+      session: { expire_in: createSession() },
     };
     return res.status(200).json({ user });
   }
+
   const userData = [response.data].map((user) => ({
     name: user.name,
     email: user.email,
@@ -51,6 +51,11 @@ export const getDataUser = async (req, res) => {
     profile: user.avatar_url,
     bio: user.bio,
   }));
+
   await createUser(...userData);
-  return res.status(201).json({ message: 'User created' });
+  const user = {
+    ...userExists[0],
+    session: { expire_in: createSession() },
+  };
+  return res.status(201).json({ user });
 };
