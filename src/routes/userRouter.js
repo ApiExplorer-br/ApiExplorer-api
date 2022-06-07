@@ -1,9 +1,13 @@
 import express from 'express';
 
-import { createUser } from '../controllers/userControllers.js';
+import {
+  getDataUserFromGithub,
+  loginGithub,
+} from '../controllers/userControllers.js';
 
 const userRouter = express.Router();
 
-userRouter.post('/', createUser);
+userRouter.get('/login/github', loginGithub);
+userRouter.get('/login/get-user-data', getDataUserFromGithub);
 
 export { userRouter };

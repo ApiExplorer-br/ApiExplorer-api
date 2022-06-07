@@ -1,26 +1,20 @@
 import { v4 as uuid } from 'uuid';
 
-import { AppError } from '../errors/AppError.js';
 import { createUserModel, getByEmail } from '../models/UserModel.js';
 
 export const getUserByEmail = (email) => getByEmail(email);
 
-export const createUserService = async (
-  name,
-  email,
-  url_github,
-  profile,
-  bio
-) => {
-  const userExists = await getByEmail(email);
-  if (userExists.length) throw new AppError('User already exists');
-  const user = await createUserModel(
-    uuid(),
-    name,
-    email,
-    url_github,
-    profile,
-    bio
-  );
+export const createUserService = async (userDataGithub) => {
+  const userData = [userDataGithub].map((user) => ({
+    id: uuid(),
+    name: user.name,
+    email: user.email,
+    url_github: user.html_url,
+    profile: user.avatar_url,
+    bio: user.bio,
+  }));
+
+  const user = await createUserModel(userData[0]);
+
   return user;
 };

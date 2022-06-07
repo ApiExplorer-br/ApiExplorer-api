@@ -8,18 +8,25 @@ export const getByEmail = async (email) => {
   return user;
 };
 
-export const createUserModel = async (
+export const createUserModel = async ({
   id,
   name,
   email,
   url_github,
   profile,
-  bio
-) => {
-  const [user] = await connection.execute(
+  bio,
+}) => {
+  await connection.execute(
     `INSERT INTO users (id, name, email, url_github, profile, bio) VALUES (?, ?, ?, ?, ?, ?)`,
     [id, name, email, url_github, profile, bio]
   );
 
-  return user.insertId;
+  return {
+    id,
+    name,
+    email,
+    url_github,
+    profile,
+    bio,
+  };
 };
