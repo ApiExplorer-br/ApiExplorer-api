@@ -11,6 +11,7 @@ CREATE TABLE
     url_github VARCHAR(255) NOT NULL,
     profile VARCHAR(255) NOT NULL,
     bio VARCHAR(255),
+    admin BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT NOW(),
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
@@ -49,7 +50,7 @@ CREATE TABLE
   ) ENGINE = INNODB;
 
 INSERT INTO
-  users(id, name, email, url_github, profile, bio)
+  users(id, name, email, url_github, profile, bio, admin)
 VALUES
   (
     'afbf3b6b-26e6-4167-801f-ba538aa35c6b',
@@ -57,7 +58,8 @@ VALUES
     'example@user.com',
     'URL',
     'FOTO',
-    'KKDKDKKDKDDK'
+    'KKDKDKKDKDDK',
+    true
   );
 
 INSERT INTO
