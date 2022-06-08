@@ -23,10 +23,11 @@ export const getApiById = async (request, response) => {
 };
 
 export const createApi = async (request, response) => {
-  const { url, category, description, user_id } = request.body;
+  const { url, category, description } = request.body;
+  const { id } = request.user;
   const userRepo = url.split('.com/')[1];
 
-  await createApiService(userRepo, category, description, url, user_id);
+  await createApiService(userRepo, category, description, url, id);
 
   response.status(201).json({ message: 'API created successfully' });
 };
