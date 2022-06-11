@@ -43,6 +43,19 @@ CREATE TABLE
   ) ENGINE = INNODB;
 
 CREATE TABLE
+  rating(
+    id VARCHAR(255) NOT NULL,
+    rating INT NOT NULL,
+    message VARCHAR(255),
+    api_id VARCHAR(255) NOT NULL,
+    user_id VARCHAR(255) NOT NULL, 
+    created_at DATETIME DEFAULT NOW(), 
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE, 
+    FOREIGN KEY (api_id) REFERENCES apis (id) ON DELETE CASCADE,
+    PRIMARY KEY(id) 
+  ) ENGINE = INNODB;
+
+CREATE TABLE
   front (
     id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -50,7 +63,6 @@ CREATE TABLE
     technologies VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     description VARCHAR(255),
-    rating INT NOT NULL,
     url_deploy VARCHAR(255),
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
