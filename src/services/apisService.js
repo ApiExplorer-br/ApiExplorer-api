@@ -30,7 +30,7 @@ export const createApiService = async (
   const technologies = await getLanguages(userRepo);
 
   if (technologies.includes('HTML')) {
-    throw new AppError('This repository is not an api!');
+    throw new AppError('This repository is not an api! Looks like a frontEnd application.');
   }
 
   const apiExists = await getApiByUrl(url);
