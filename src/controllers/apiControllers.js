@@ -1,6 +1,7 @@
 import {
   createApiService,
   getAllApisService,
+  getApiByIdService,
 } from '../services/apisService.js';
 
 export const getAllApis = async (_request, response) => {
@@ -17,9 +18,8 @@ export const getApiByCategory = async (request, response) => {
 
 export const getApiById = async (request, response) => {
   const { id } = request.params;
-  const apis = await getAllApisService();
-  const filteredApis = apis.filter((api) => api.id === id);
-  return response.status(200).json(filteredApis);
+  const api = await getApiByIdService(id);
+  return response.status(200).json(api);
 };
 
 export const createApi = async (request, response) => {

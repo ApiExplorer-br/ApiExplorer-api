@@ -4,20 +4,32 @@ import { AppError } from '../errors/AppError.js';
 import {
   createApiModel,
   getAllApiModel,
+  getApiByIdModel,
   getApiByUrl,
 } from '../models/ApisModel.js';
+import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
 
 export const getAllApisService = async () => {
   const apis = await getAllApiModel();
-
-  return apis.map((api) => {
-    return {
-      ...api,
-      technologies: JSON.parse(api.technologies),
-    };
+  console.log(apis);
+  const allApis = await apis.map(async (api) => {
+    const apiRating = await getApiRatingById(api.id);
+    if (apiRating.length) {
+      const overallRating = Math.round(apiRating.reduce((acc, curr) => acc + curr.rating, 0) / apiRating.length);
+      return { ...api, rating: overallRating, technologies: JSON.parse(api.technologies) };
+    }
+    return { ...api, technologies: JSON.parse(api.technologies) }; 
   });
+  const api = Promise.all(allApis)
+  return api;
+};
+
+export const getApiByIdService = async (id) => {
+  const [api] = await getApiByIdModel(id);
+  const apiRating = await getApiRatingById(id);
+    return { ...api, rating: apiRating, technologies: JSON.parse(api.technologies) };
 };
 
 export const createApiService = async (
