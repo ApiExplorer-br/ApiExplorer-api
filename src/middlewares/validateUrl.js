@@ -6,7 +6,7 @@ const validateUrl = (req, res, next) => {
     });
   }
 
-  if (!url.includes('https://github.com/')) {
+  if (!url.startsWith('https://github.com/')) {
     return res.status(400).json({
       message: 'Url is invalid',
     });
