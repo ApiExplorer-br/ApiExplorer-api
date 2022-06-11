@@ -156,7 +156,7 @@ VALUES
     '4ad4e2b8-33b7-4a02-af06-d1c818833eac',
     'Veículos'
   ),
-  ('45501089-9dc3-4b5b-990b-6bad1add8c7c', ' Vídeo');
+  ('45501089-9dc3-4b5b-990b-6bad1add8c7c', 'Vídeo');
 
 INSERT INTO
   apis(
