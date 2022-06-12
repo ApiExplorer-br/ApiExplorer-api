@@ -28,3 +28,9 @@ export const getFeedbackById = async (id) => {
   );
   return feedbacks;
 };
+export const editFeedbackReadModel = async (id, read) => {
+  await connection.query(`UPDATE feedbacks SET isRead = ? WHERE id = ?`, [
+    read,
+    id,
+  ]);
+};

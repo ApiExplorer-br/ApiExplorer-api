@@ -2,6 +2,7 @@ import {
   getAllFeedbackService,
   createFeedbackService,
   deleteFeedbackService,
+  editReadStateService,
 } from '../services/feedbackService.js';
 
 export const getAll = async (request, response) => {
@@ -25,4 +26,11 @@ export const deleteFeedback = async (request, response) => {
   await deleteFeedbackService(id);
 
   response.status(200).json({ message: 'Feedback deleted!' });
+};
+
+export const editReadState = async (request, response) => {
+  const { id } = request.params;
+  await editReadStateService(id);
+
+  response.status(200).json({ message: 'isRead updated' });
 };
