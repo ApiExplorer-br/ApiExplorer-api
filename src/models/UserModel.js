@@ -7,6 +7,12 @@ export const getByEmail = async (email) => {
   );
   return user;
 };
+export const getUserById = async (id) => {
+  const [user] = await connection.execute(`SELECT * FROM users WHERE id = ?`, [
+    id,
+  ]);
+  return user;
+};
 
 export const getAllUsersModel = async () => {
   const [users] = await connection.execute(`SELECT * FROM users`);

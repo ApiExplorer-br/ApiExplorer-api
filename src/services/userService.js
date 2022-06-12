@@ -6,6 +6,7 @@ import {
   getByEmail,
   deleteUserModel,
   getAllUsersModel,
+  getUserById,
 } from '../models/UserModel.js';
 
 import { createJwt } from './auth/createJwt.js';
@@ -44,5 +45,8 @@ export const createJWTService = async (email) => {
 };
 
 export const deleteUserService = async (id) => {
+  if (!id) throw new AppError('Id is required');
+  const user = await getUserById(id);
+  if (!user.length) throw new AppError('User does not exists!', 404);
   await deleteUserModel(id);
 };
