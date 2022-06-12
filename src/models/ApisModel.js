@@ -35,3 +35,8 @@ export const createApiModel = async (
     [id, name, url_repo, technologies, category, description, rating, user_id]
   );
 };
+
+export const deleteApiModel = async (id) => {
+  console.log(id);
+  await connection.execute(`DELETE FROM apis WHERE id = ?`, [id]);
+};

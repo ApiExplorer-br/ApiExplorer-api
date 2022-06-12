@@ -2,6 +2,7 @@ import {
   createApiService,
   getAllApisService,
   getApiByIdService,
+  deleteApiService,
 } from '../services/apisService.js';
 
 export const getAllApis = async (_request, response) => {
@@ -30,4 +31,10 @@ export const createApi = async (request, response) => {
   await createApiService(userRepo, category, description, url, id);
 
   response.status(201).json({ message: 'API created successfully' });
+};
+
+export const deleteApi = async (request, response) => {
+  const { id } = request.params;
+  await deleteApiService(id);
+  return response.status(204).send();
 };
