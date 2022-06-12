@@ -11,6 +11,7 @@ CREATE TABLE users (
     url_github VARCHAR(255) NOT NULL,
     profile VARCHAR(255) NOT NULL,
     bio VARCHAR(255),
+  	admin BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT NOW(),
     PRIMARY KEY(id)
 ) ENGINE = INNODB;
