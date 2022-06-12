@@ -22,7 +22,7 @@ export const ensureAuthenticated = async (request, response, next) => {
     // eslint-disable-next-line
     request.user = userData[0];
     next();
-  } catch {
-    throw new AppError('Invalid Token', 401);
+  } catch (error) {
+    throw new AppError(error.message, error.statusCode);
   }
 };
