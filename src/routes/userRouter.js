@@ -4,6 +4,7 @@ import {
   getDataUserFromGithub,
   loginGithub,
   deleteUser,
+  deleteUserByAdmin,
   refreshToken,
   getAll,
 } from '../controllers/userControllers.js';
@@ -17,5 +18,11 @@ userRouter.post('/refresh-token', refreshToken);
 userRouter.get('/login/github', loginGithub);
 userRouter.get('/login/get-user-data', getDataUserFromGithub);
 userRouter.delete('/', ensureAuthenticated, deleteUser);
+userRouter.delete(
+  '/by-admin/:id',
+  ensureAuthenticated,
+  ensureAdmin,
+  deleteUserByAdmin
+);
 
 export { userRouter };

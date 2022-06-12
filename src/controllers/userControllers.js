@@ -53,3 +53,8 @@ export const deleteUser = async (req, res) => {
   await deleteUserService(id);
   res.status(204).json();
 };
+export const deleteUserByAdmin = async (req, res) => {
+  const { id } = req.params;
+  await deleteUserService(id);
+  res.status(204).json();
+};
