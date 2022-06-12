@@ -3,6 +3,7 @@ import {
   getUserByEmail,
   createUserService,
   deleteUserService,
+  createJWTService,
 } from '../services/userService.js';
 import { getUserData, githubOAuth } from '../utils/apiGithub.js';
 
@@ -30,6 +31,14 @@ export const getDataUserFromGithub = async (req, res) => {
 
   const jwt_token = await createJwt(userCreated.email);
   return res.status(201).json({ jwt_token });
+};
+
+export const refreshToken = async (req, res) => {
+  const { email } = req.body;
+
+  const jwt_token = await createJWTService(email);
+
+  res.status(200).json({ jwt_token });
 };
 
 export const deleteUser = async (req, res) => {
