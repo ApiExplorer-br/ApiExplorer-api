@@ -6,6 +6,7 @@ import {
   getAllApiModel,
   getApiByIdModel,
   getApiByUrl,
+  deleteApiModel,
 } from '../models/ApisModel.js';
 import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
@@ -35,6 +36,7 @@ export const getAllApisService = async () => {
 export const getApiByIdService = async (id) => {
   const [api] = await getApiByIdModel(id);
   const apiRating = await getApiRatingById(id);
+  if (!apiRating.length) throw new AppError('Api not found', 404);
   return {
     ...api,
     rating: apiRating,
@@ -74,4 +76,9 @@ export const createApiService = async (
   }));
   const values = Object.values(filteredData[0]);
   return createApiModel(...values);
+};
+export const deleteApiService = async (id) => {
+  const apiExists = await getApiByIdModel(id);
+  if (!apiExists.length) throw new AppError('This api does not exist!', 404);
+  return deleteApiModel(id);
 };
