@@ -66,9 +66,12 @@ CREATE TABLE front (
     PRIMARY KEY(id)
 ) ENGINE = INNODB;
 
-CREATE TABLE feedback (
+CREATE TABLE feedbacks (
     id VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     message VARCHAR(255) NOT NULL,
+    isRead BOOLEAN DEFAULT FALSE,
     user_id VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
@@ -79,11 +82,19 @@ INSERT INTO
 VALUES
     (
         'afbf3b6b-26e6-4167-801f-ba538aa35c6b',
-        'NOME',
+        'user',
         'example@user.com',
         'URL',
         'FOTO',
-        'KKDKDKKDKDDK'
+        'description'
+    ),
+    (
+        '5ebaabfb-14b3-4f84-bcfc-9fb70da5fad0',
+        'other user',
+        'exampleother@user.com',
+        'URL',
+        'FOTO',
+        'description'
     );
 
 INSERT INTO
