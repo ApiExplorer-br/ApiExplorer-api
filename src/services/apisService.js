@@ -34,13 +34,14 @@ export const getAllApisService = async () => {
 };
 
 export const getApiByIdService = async (id) => {
-  const [api] = await getApiByIdModel(id);
+  const api = await getApiByIdModel(id);
   const apiRating = await getApiRatingById(id);
-  if (!apiRating.length) throw new AppError('Api not found', 404);
+
+  if (!api.length) throw new AppError('Api not found', 404);
   return {
-    ...api,
+    ...api[0],
     rating: apiRating,
-    technologies: JSON.parse(api.technologies),
+    technologies: JSON.parse(api[0].technologies),
   };
 };
 
