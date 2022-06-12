@@ -2,6 +2,7 @@ import express from 'express';
 
 import { apiRouter } from './apiRouter.js';
 import { categoryRouter } from './categoryRouter.js';
+import { feedbackRouter } from './feedbackRouter.js';
 import { ratingRouter } from './ratingRouter.js';
 import { userRouter } from './userRouter.js';
 
@@ -11,5 +12,6 @@ router.use('/apis', apiRouter);
 router.use('/users', userRouter);
 router.use('/categories', categoryRouter);
 router.use('/rating', ratingRouter);
+router.use('/feedbacks', feedbackRouter);
 
 export { router };
