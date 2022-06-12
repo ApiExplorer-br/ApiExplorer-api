@@ -46,3 +46,10 @@ export const editRatingModel = async (
   );
   return result;
 };
+
+export const deleteRatingModel = async (id) => {
+  const result = await connection.query(`DELETE FROM rating WHERE id = ?`, [
+    id,
+  ]);
+  return result;
+};

@@ -6,7 +6,8 @@ export const isOwnerRating = async (req, _res, next) => {
   const { id } = req.params;
   const [rating] = await getRatingById(id);
 
-  if (rating.user_id !== userId) throw new AppError('Unauthorized user', 401);
+  if (rating && rating.user_id !== userId)
+    throw new AppError('Unauthorized user', 401);
 
   next();
 };

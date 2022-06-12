@@ -5,6 +5,7 @@ import {
   createRatingModel,
   editRatingModel,
   getRatingById,
+  deleteRatingModel,
 } from '../models/RatingModel.js';
 
 export const createRatingService = async (
@@ -39,4 +40,12 @@ export const editRatingService = async (
     name
   );
   return updateRating;
+};
+
+export const deleteRatingService = async (id) => {
+  const ratingExists = await getRatingById(id);
+
+  if (!ratingExists.length) throw new AppError('Rating not found', 404);
+
+  await deleteRatingModel(id);
 };

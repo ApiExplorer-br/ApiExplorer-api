@@ -1,6 +1,7 @@
 import {
   createRatingService,
   editRatingService,
+  deleteRatingService,
 } from '../services/ratingService.js';
 
 export const createRating = async (request, response) => {
@@ -23,4 +24,10 @@ export const editRating = async (request, response) => {
   const { id } = request.params;
   await editRatingService(id, api_id, rating, message, userId, name);
   return response.status(201).send('Rating updated successfully');
+};
+
+export const deleteRating = async (request, response) => {
+  const { id } = request.params;
+  await deleteRatingService(id);
+  return response.status(204).send();
 };
