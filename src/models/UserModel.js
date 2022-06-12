@@ -8,6 +8,11 @@ export const getByEmail = async (email) => {
   return user;
 };
 
+export const getAllUsersModel = async () => {
+  const [users] = await connection.execute(`SELECT * FROM users`);
+  return users;
+};
+
 export const createUserModel = async ({
   id,
   name,

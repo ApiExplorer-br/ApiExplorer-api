@@ -5,12 +5,18 @@ import {
   createUserModel,
   getByEmail,
   deleteUserModel,
+  getAllUsersModel,
 } from '../models/UserModel.js';
 
 import { createJwt } from './auth/createJwt.js';
 
 export const getUserByEmail = (email) => getByEmail(email);
 
+export const getAllUsersService = async () => {
+  const users = await getAllUsersModel();
+  users.sort((a, b) => a.name.localeCompare(b.name));
+  return users;
+};
 export const createUserService = async (userDataGithub) => {
   const userData = [userDataGithub].map((user) => ({
     id: uuid(),

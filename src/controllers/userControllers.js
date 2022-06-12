@@ -4,8 +4,15 @@ import {
   createUserService,
   deleteUserService,
   createJWTService,
+  getAllUsersService,
 } from '../services/userService.js';
 import { getUserData, githubOAuth } from '../utils/apiGithub.js';
+
+export const getAll = async (_request, response) => {
+  const users = await getAllUsersService();
+
+  return response.status(200).send(users);
+};
 
 export const loginGithub = async (req, res) => {
   const { code } = req.query;

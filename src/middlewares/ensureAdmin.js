@@ -1,4 +1,4 @@
-import { AppError } from '../errors/AppError';
+import { AppError } from '../errors/AppError.js';
 
 export const ensureAdmin = async (request, _response, next) => {
   const { admin } = request.user;
