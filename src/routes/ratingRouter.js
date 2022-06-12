@@ -6,12 +6,17 @@ import {
   deleteRating,
 } from '../controllers/ratingControllers.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
-import { isOwnerRating } from '../middlewares/isOwnerRating.js';
+import { ensureIsRatingOwner } from '../middlewares/ensureIsRatingOwner.js';
 
 const ratingRouter = express.Router();
 
 ratingRouter.post('/', ensureAuthenticated, createRating);
-ratingRouter.put('/:id', ensureAuthenticated, isOwnerRating, editRating);
-ratingRouter.delete('/:id', ensureAuthenticated, isOwnerRating, deleteRating);
+ratingRouter.put('/:id', ensureAuthenticated, ensureIsRatingOwner, editRating);
+ratingRouter.delete(
+  '/:id',
+  ensureAuthenticated,
+  ensureIsRatingOwner,
+  deleteRating
+);
 
 export { ratingRouter };

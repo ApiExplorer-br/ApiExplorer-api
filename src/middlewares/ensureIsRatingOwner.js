@@ -1,7 +1,7 @@
 import { AppError } from '../errors/AppError.js';
 import { getRatingById } from '../models/RatingModel.js';
 
-export const isOwnerRating = async (req, _res, next) => {
+export const ensureIsRatingOwner = async (req, _res, next) => {
   const { id: userId, admin } = req.user;
   const { id } = req.params;
   const [rating] = await getRatingById(id);
