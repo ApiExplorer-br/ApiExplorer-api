@@ -15,7 +15,7 @@ const apiRouter = express.Router();
 
 apiRouter.get('/', getAllApis);
 apiRouter.get('/:id', getApiById);
-apiRouter.get('/list/:category', getApiByCategory);
+apiRouter.get('/category/:id', getApiByCategory);
 apiRouter.post('/', ensureAuthenticated, validateUrl, createApi);
 apiRouter.delete('/:id', ensureAuthenticated, ensureIsApiOwner, deleteApi);
 
