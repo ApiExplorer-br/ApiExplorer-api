@@ -1,14 +1,16 @@
 import { connection } from '../db/index.js';
 
 export const getAllApiModel = async () => {
-  const [apis] = await connection.execute(`SELECT * FROM apis`);  
+  const [apis] = await connection.execute(`SELECT * FROM apis`);
   return apis;
 };
 
 export const getApiByIdModel = async (id) => {
-  const [api] = await connection.execute(`SELECT * FROM apis WHERE id = ?`, [id]);
+  const [api] = await connection.execute(`SELECT * FROM apis WHERE id = ?`, [
+    id,
+  ]);
   return api;
-}
+};
 
 export const getApiByUrl = async (url) => {
   const [api] = await connection.execute(
