@@ -39,7 +39,6 @@ export const editRatingModel = async (
   userId,
   name
 ) => {
-  console.log(id, api_id, rating, message, userId, name);
   const result = await connection.query(
     `UPDATE rating SET rating = ?, message = ?, user_id = ?, user_name = ? WHERE id = ? AND api_id = ?`,
     [rating, message, userId, name, id, api_id]
