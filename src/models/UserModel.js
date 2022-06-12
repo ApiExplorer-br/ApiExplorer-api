@@ -30,3 +30,7 @@ export const createUserModel = async ({
     bio,
   };
 };
+
+export const deleteUserModel = async (id) => {
+  await connection.execute(`DELETE FROM users WHERE id = ?`, [id]);
+};

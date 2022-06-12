@@ -1,5 +1,9 @@
 import { createJwt } from '../services/auth/createJwt.js';
-import { getUserByEmail, createUserService } from '../services/userService.js';
+import {
+  getUserByEmail,
+  createUserService,
+  deleteUserService,
+} from '../services/userService.js';
 import { getUserData, githubOAuth } from '../utils/apiGithub.js';
 
 export const loginGithub = async (req, res) => {
@@ -26,4 +30,10 @@ export const getDataUserFromGithub = async (req, res) => {
 
   const jwt_token = await createJwt(userCreated.email);
   return res.status(201).json({ jwt_token });
+};
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.user;
+  await deleteUserService(id);
+  res.status(204).json();
 };

@@ -13,23 +13,33 @@ import { getLanguages } from '../utils/getLanguages.js';
 
 export const getAllApisService = async () => {
   const apis = await getAllApiModel();
-  console.log(apis);
+
   const allApis = await apis.map(async (api) => {
     const apiRating = await getApiRatingById(api.id);
     if (apiRating.length) {
-      const overallRating = Math.round(apiRating.reduce((acc, curr) => acc + curr.rating, 0) / apiRating.length);
-      return { ...api, rating: overallRating, technologies: JSON.parse(api.technologies) };
+      const overallRating = Math.round(
+        apiRating.reduce((acc, curr) => acc + curr.rating, 0) / apiRating.length
+      );
+      return {
+        ...api,
+        rating: overallRating,
+        technologies: JSON.parse(api.technologies),
+      };
     }
-    return { ...api, technologies: JSON.parse(api.technologies) }; 
+    return { ...api, technologies: JSON.parse(api.technologies) };
   });
-  const api = Promise.all(allApis)
+  const api = Promise.all(allApis);
   return api;
 };
 
 export const getApiByIdService = async (id) => {
   const [api] = await getApiByIdModel(id);
   const apiRating = await getApiRatingById(id);
-    return { ...api, rating: apiRating, technologies: JSON.parse(api.technologies) };
+  return {
+    ...api,
+    rating: apiRating,
+    technologies: JSON.parse(api.technologies),
+  };
 };
 
 export const createApiService = async (
@@ -42,7 +52,9 @@ export const createApiService = async (
   const technologies = await getLanguages(userRepo);
 
   if (technologies.includes('HTML')) {
-    throw new AppError('This repository is not an api! Looks like a frontEnd application.');
+    throw new AppError(
+      'This repository is not an api! Looks like a frontEnd application.'
+    );
   }
 
   const apiExists = await getApiByUrl(url);

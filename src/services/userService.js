@@ -1,6 +1,10 @@
 import { v4 as uuid } from 'uuid';
 
-import { createUserModel, getByEmail } from '../models/UserModel.js';
+import {
+  createUserModel,
+  getByEmail,
+  deleteUserModel,
+} from '../models/UserModel.js';
 
 export const getUserByEmail = (email) => getByEmail(email);
 
@@ -17,4 +21,8 @@ export const createUserService = async (userDataGithub) => {
   const user = await createUserModel(userData[0]);
 
   return user;
+};
+
+export const deleteUserService = async (id) => {
+  await deleteUserModel(id);
 };
