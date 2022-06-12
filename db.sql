@@ -66,6 +66,14 @@ CREATE TABLE front (
     PRIMARY KEY(id)
 ) ENGINE = INNODB;
 
+CREATE TABLE feedback (
+    id VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    user_id VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE = INNODB;
 INSERT INTO
     users(id, name, email, url_github, profile, bio)
 VALUES

@@ -37,6 +37,5 @@ export const createApiModel = async (
 };
 
 export const deleteApiModel = async (id) => {
-  console.log(id);
   await connection.execute(`DELETE FROM apis WHERE id = ?`, [id]);
 };
