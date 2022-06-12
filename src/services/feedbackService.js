@@ -21,7 +21,7 @@ export const createFeedbackService = async (message, name, email, user_id) => {
 
 export const deleteFeedbackService = async (id) => {
   const feedbackExists = await getFeedbackById(id);
-  console.log(feedbackExists);
+
   if (!feedbackExists.length) throw new AppError('Feedback not found', 404);
   await deleteFeedbackModel(id);
 };
