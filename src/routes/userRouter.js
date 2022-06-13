@@ -17,7 +17,7 @@ const userRouter = express.Router();
 
 userRouter.get('/', ensureAuthenticated, ensureAdmin, getAll);
 userRouter.get('/profile', ensureAuthenticated, getProfile);
-userRouter.get('/:id', ensureAuthenticated, getById);
+userRouter.get('/:id', getById);
 userRouter.get('/login/github', loginGithub);
 userRouter.get('/login/get-user-data', getDataUserFromGithub);
 userRouter.post('/refresh-token', refreshToken);
