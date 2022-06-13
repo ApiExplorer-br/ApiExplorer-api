@@ -1,13 +1,11 @@
-import { createJwt } from '../services/auth/createJwt.js';
 import {
-  getUserByEmail,
   createUserService,
   deleteUserService,
   createJWTService,
   getAllUsersService,
   getUserByIdService,
 } from '../services/userService.js';
-import { getUserData, githubOAuth } from '../utils/apiGithub.js';
+import { githubOAuth } from '../utils/apiGithub.js';
 
 export const getAll = async (_request, response) => {
   const users = await getAllUsersService();
@@ -40,18 +38,8 @@ export const loginGithub = async (req, res) => {
 export const getDataUserFromGithub = async (req, res) => {
   const { access_token } = req.query;
 
-  const userData = await getUserData(access_token);
+  const jwt_token = await createUserService(access_token);
 
-  const userExists = await getUserByEmail(userData.data.email);
-
-  if (userExists.length) {
-    const jwt_token = await createJwt(userExists[0].email);
-    return res.status(200).json({ jwt_token });
-  }
-
-  const userCreated = await createUserService(userData.data);
-
-  const jwt_token = await createJwt(userCreated.email);
   return res.status(201).json({ jwt_token });
 };
 
