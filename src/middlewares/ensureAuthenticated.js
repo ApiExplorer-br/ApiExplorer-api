@@ -17,7 +17,7 @@ export const ensureAuthenticated = async (request, response, next) => {
     const userData = await getUserByEmail(user.email);
 
     if (!userData.length) {
-      throw new AppError('User does not exists!', 404);
+      throw new AppError('User or admin does not exists!', 404);
     }
     // eslint-disable-next-line
     request.user = userData[0];
