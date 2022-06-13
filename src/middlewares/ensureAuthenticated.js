@@ -14,13 +14,13 @@ export const ensureAuthenticated = async (request, response, next) => {
   try {
     const secret = process.env.JWT_SECRET;
     const { user } = jwt.verify(token, secret);
-    const userData = await getUserByEmail(user.email);
+    const userExists = await getUserByEmail(user.email);
 
-    if (!userData.length) {
+    if (!userExists.length) {
       throw new AppError('User or admin does not exists!', 404);
     }
-    // eslint-disable-next-line
-    request.user = userData[0];
+    const [userData] = userExists;
+    request.user = userData;
     next();
   } catch (error) {
     throw new AppError(error.message, error.statusCode);
