@@ -18,6 +18,13 @@ export const getAllUsersService = async () => {
   users.sort((a, b) => a.name.localeCompare(b.name));
   return users;
 };
+
+export const getUserByIdService = async (id) => {
+  const user = await getUserById(id);
+  if (!user.length) throw new AppError('User not found', 404);
+  return user;
+};
+
 export const createUserService = async (userDataGithub) => {
   const userData = [userDataGithub].map((user) => ({
     id: uuid(),

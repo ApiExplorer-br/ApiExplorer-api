@@ -7,6 +7,7 @@ import {
   deleteUserByAdmin,
   refreshToken,
   getAll,
+  getById,
 } from '../controllers/userControllers.js';
 import { ensureAdmin } from '../middlewares/ensureAdmin.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
@@ -14,9 +15,10 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 const userRouter = express.Router();
 
 userRouter.get('/', ensureAuthenticated, ensureAdmin, getAll);
-userRouter.post('/refresh-token', refreshToken);
+userRouter.get('/:id', ensureAuthenticated, getById);
 userRouter.get('/login/github', loginGithub);
 userRouter.get('/login/get-user-data', getDataUserFromGithub);
+userRouter.post('/refresh-token', refreshToken);
 userRouter.delete('/', ensureAuthenticated, deleteUser);
 userRouter.delete(
   '/by-admin/:id',
