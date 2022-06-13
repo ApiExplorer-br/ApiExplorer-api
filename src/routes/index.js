@@ -11,7 +11,7 @@ const router = express.Router();
 router.use('/apis', apiRouter);
 router.use('/users', userRouter);
 router.use('/categories', categoryRouter);
-router.use('/rating', ratingRouter);
+router.use('/ratings', ratingRouter);
 router.use('/feedbacks', feedbackRouter);
 
 export { router };
