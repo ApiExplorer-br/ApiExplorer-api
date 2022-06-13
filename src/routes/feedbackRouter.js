@@ -14,6 +14,11 @@ const feedbackRouter = express.Router();
 feedbackRouter.post('/', ensureAuthenticated, createFeedback);
 feedbackRouter.get('/', ensureAuthenticated, ensureAdmin, getAll);
 feedbackRouter.delete('/:id', ensureAuthenticated, ensureAdmin, deleteFeedback);
-feedbackRouter.patch('/:id', ensureAuthenticated, ensureAdmin, editReadState);
+feedbackRouter.patch(
+  '/is-read/:id',
+  ensureAuthenticated,
+  ensureAdmin,
+  editReadState
+);
 
 export { feedbackRouter };
