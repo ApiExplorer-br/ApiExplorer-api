@@ -6,7 +6,6 @@ import {
   getUserByIdService,
   editProfileService,
 } from '../services/userService.js';
-import { githubOAuth } from '../utils/apiGithub.js';
 
 export const getAll = async (_request, response) => {
   const users = await getAllUsersService();
@@ -26,14 +25,6 @@ export const getProfile = async (request, response) => {
   const user = await getUserByIdService(id);
 
   return response.status(200).send(user);
-};
-
-export const loginGithub = async (req, res) => {
-  const { code } = req.query;
-  const response = await githubOAuth(code);
-  const { access_token } = response.data;
-  if (!access_token) return;
-  res.redirect(`/users/login/get-user-data?access_token=${access_token}`);
 };
 
 export const getDataUserFromGithub = async (req, res) => {
