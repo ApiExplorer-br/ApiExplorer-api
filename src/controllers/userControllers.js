@@ -32,8 +32,10 @@ export const loginGithub = async (req, res) => {
   const { code } = req.query;
   const response = await githubOAuth(code);
   const { access_token } = response.data;
-  if (!access_token) return;
-  res.redirect(`/users/login/get-user-data?access_token=${access_token}`);
+  if (!access_token) return res.status(200).send();
+  return res.redirect(
+    `/users/login/get-user-data?access_token=${access_token}`
+  );
 };
 
 export const getDataUserFromGithub = async (req, res) => {
