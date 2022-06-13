@@ -22,6 +22,13 @@ export const getById = async (request, response) => {
   return response.status(200).send(user);
 };
 
+export const getProfile = async (request, response) => {
+  const { id } = request.user;
+  const user = await getUserByIdService(id);
+
+  return response.status(200).send(user);
+};
+
 export const loginGithub = async (req, res) => {
   const { code } = req.query;
   const response = await githubOAuth(code);
