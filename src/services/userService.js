@@ -7,6 +7,7 @@ import {
   deleteUserModel,
   getAllUsersModel,
   getUserById,
+  editProfileModel,
 } from '../models/UserModel.js';
 import { getUserData } from '../utils/apiGithub.js';
 
@@ -61,6 +62,11 @@ export const createUserService = async (access_token) => {
   return jwt_token;
 };
 
+export const editProfileService = async (id, name, bio) => {
+  const user = await getUserById(id);
+  if (!user.length) throw new AppError('User not found', 404);
+  await editProfileModel(id, name, bio);
+};
 export const deleteUserService = async (id) => {
   if (!id) throw new AppError('Id is required');
   const user = await getUserById(id);

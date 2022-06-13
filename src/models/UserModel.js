@@ -42,6 +42,14 @@ export const createUserModel = async ({
   };
 };
 
+export const editProfileModel = async (id, name, bio) => {
+  await connection.execute(`UPDATE users SET name = ?, bio = ? WHERE id = ?`, [
+    name,
+    bio,
+    id,
+  ]);
+};
+
 export const deleteUserModel = async (id) => {
   await connection.execute(`DELETE FROM users WHERE id = ?`, [id]);
 };

@@ -9,6 +9,7 @@ import {
   getAll,
   getById,
   getProfile,
+  editProfile,
 } from '../controllers/userControllers.js';
 import { ensureAdmin } from '../middlewares/ensureAdmin.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
@@ -21,6 +22,7 @@ userRouter.get('/:id', getById);
 userRouter.get('/login/github', loginGithub);
 userRouter.get('/login/get-user-data', getDataUserFromGithub);
 userRouter.post('/refresh-token', refreshToken);
+userRouter.put('/', ensureAuthenticated, editProfile);
 userRouter.delete('/', ensureAuthenticated, deleteUser);
 userRouter.delete(
   '/by-admin/:id',

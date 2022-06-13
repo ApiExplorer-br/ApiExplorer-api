@@ -4,6 +4,7 @@ import {
   createJWTService,
   getAllUsersService,
   getUserByIdService,
+  editProfileService,
 } from '../services/userService.js';
 import { githubOAuth } from '../utils/apiGithub.js';
 
@@ -51,11 +52,21 @@ export const refreshToken = async (req, res) => {
   res.status(200).json({ jwt_token });
 };
 
+export const editProfile = async (request, response) => {
+  const { id } = request.user;
+  const { name, bio } = request.body;
+
+  await editProfileService(id, name, bio);
+
+  return response.status(200).send({ message: 'User updated successfully' });
+};
+
 export const deleteUser = async (req, res) => {
   const { id } = req.user;
   await deleteUserService(id);
   res.status(204).json();
 };
+
 export const deleteUserByAdmin = async (req, res) => {
   const { id } = req.params;
   await deleteUserService(id);
