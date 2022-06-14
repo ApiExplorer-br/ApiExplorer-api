@@ -7,6 +7,7 @@ import {
   getApiByIdModel,
   getApiByUrl,
   deleteApiModel,
+  getApiByUserModel,
 } from '../models/ApisModel.js';
 import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
@@ -45,6 +46,10 @@ export const getApiByIdService = async (id) => {
   };
 };
 
+export const getApiByUserService = async (userId) => {
+  const apis = await getApiByUserModel(userId);
+  return apis;
+};
 export const createApiService = async (
   userRepo,
   category,
