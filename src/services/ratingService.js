@@ -15,6 +15,8 @@ export const createRatingService = async (
   message,
   name
 ) => {
+  const isRatingValid = rating >= 1 && rating <= 5;
+  if (!isRatingValid) throw new AppError('Rating must be between 1 and 5', 400);
   await createRatingModel(uuidv4(), api_id, rating, message, userId, name);
   return { message: 'Rating created successfully' };
 };
@@ -30,6 +32,9 @@ export const editRatingService = async (
   const ratingExists = await getRatingById(id);
 
   if (!ratingExists.length) throw new AppError('Rating not found', 404);
+
+  const isRatingValid = rating >= 1 && rating <= 5;
+  if (!isRatingValid) throw new AppError('Rating must be between 1 and 5', 400);
 
   const updateRating = await editRatingModel(
     id,
