@@ -16,6 +16,7 @@ export const getAllFeedbackService = async () => {
 };
 
 export const createFeedbackService = async (message, name, email, user_id) => {
+  if (!message) throw new AppError('Message is required', 400);
   await createFeedbackModel(uuidv4(), message, name, email, user_id);
 };
 
