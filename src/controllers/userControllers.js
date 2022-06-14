@@ -36,9 +36,9 @@ export const getDataUserFromGithub = async (req, res) => {
 };
 
 export const refreshToken = async (req, res) => {
-  const { email } = req.body;
+  const { id } = req.body;
 
-  const jwt_token = await createJWTService(email);
+  const jwt_token = await createJWTService(id);
 
   res.status(200).json({ jwt_token });
 };

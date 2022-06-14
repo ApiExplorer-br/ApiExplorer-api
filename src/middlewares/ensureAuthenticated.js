@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import { AppError } from '../errors/AppError.js';
-import { getUserByEmail } from '../services/userService.js';
+import { getUserByIdService } from '../services/userService.js';
 
 export const ensureAuthenticated = async (request, response, next) => {
   const authHeader = request.headers.authorization;
@@ -14,7 +14,7 @@ export const ensureAuthenticated = async (request, response, next) => {
   try {
     const secret = process.env.JWT_SECRET;
     const { user } = jwt.verify(token, secret);
-    const userExists = await getUserByEmail(user.email);
+    const userExists = await getUserByIdService(user.id);
 
     if (!userExists.length) {
       throw new AppError('User or admin does not exists!', 404);

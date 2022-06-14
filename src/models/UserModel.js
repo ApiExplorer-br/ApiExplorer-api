@@ -1,12 +1,20 @@
 import { connection } from '../db/index.js';
 
-export const getByEmail = async (email) => {
+export const getById = async (id) => {
+  const [user] = await connection.execute(`SELECT * FROM users WHERE id = ?`, [
+    id,
+  ]);
+  return user;
+};
+
+export const getByUrlGithub = async (urlGithub) => {
   const [user] = await connection.execute(
-    `SELECT * FROM users WHERE email = ?`,
-    [email]
+    `SELECT * FROM users WHERE url_github = ?`,
+    [urlGithub]
   );
   return user;
 };
+
 export const getUserById = async (id) => {
   const [user] = await connection.execute(`SELECT * FROM users WHERE id = ?`, [
     id,

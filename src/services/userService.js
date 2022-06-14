@@ -3,17 +3,17 @@ import { v4 as uuid } from 'uuid';
 import { AppError } from '../errors/AppError.js';
 import {
   createUserModel,
-  getByEmail,
   deleteUserModel,
   getAllUsersModel,
   getUserById,
   editProfileModel,
+  getByUrlGithub,
 } from '../models/UserModel.js';
 import { getUserData } from '../utils/apiGithub.js';
 
 import { generateJWT } from './auth/generateJWT.js';
 
-export const getUserByEmail = (email) => getByEmail(email);
+export const getUserByUrlGithub = (urlGithub) => getByUrlGithub(urlGithub);
 
 export const getAllUsersService = async () => {
   const users = await getAllUsersModel();
@@ -27,10 +27,10 @@ export const getUserByIdService = async (id) => {
   return user;
 };
 
-export const createJWTService = async (email) => {
-  if (!email) throw new AppError('Email is required');
+export const createJWTService = async (id) => {
+  if (!id) throw new AppError('id is required');
 
-  const userExists = await getUserByEmail(email);
+  const userExists = await getUserByIdService(id);
 
   if (!userExists.length) throw new AppError('User does not exists!', 404);
 
@@ -41,7 +41,7 @@ export const createJWTService = async (email) => {
 export const createUserService = async (access_token) => {
   const userDataGithub = await getUserData(access_token);
 
-  const userExists = await getUserByEmail(userDataGithub.data.email);
+  const userExists = await getByUrlGithub(userDataGithub.data.html_url);
 
   if (userExists.length) {
     const jwt_token = await generateJWT(userExists[0]);
