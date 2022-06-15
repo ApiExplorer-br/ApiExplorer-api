@@ -10,7 +10,7 @@ const validateData = (req, res, next) => {
   if (description.length > 255) throw new AppError('Descrição muito longa!');
 
   if (!url.startsWith('https://github.com/'))
-    throw new AppError('Url inválida!');
+    throw new AppError('A url precisa ser de um repositório do github!');
 
   next();
 };
