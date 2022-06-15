@@ -38,7 +38,7 @@ export const getApiByIdService = async (id) => {
   const api = await getApiByIdModel(id);
   const apiRating = await getApiRatingById(id);
 
-  if (!api.length) throw new AppError('Api not found', 404);
+  if (!api.length) throw new AppError('Api não encontrada!', 404);
   return {
     ...api[0],
     rating: apiRating,
@@ -65,7 +65,7 @@ export const createApiService = async (
 
   const apiExists = await getApiByUrl(url);
   if (apiExists.length)
-    throw new AppError('This repository is already an api!', 409);
+    throw new AppError('Esse repositório já está cadastrado!', 409);
 
   const repoData = await apiGithub.get(`/${userRepo}`);
   const filteredData = [repoData.data].map((repo) => ({
@@ -81,8 +81,9 @@ export const createApiService = async (
   const values = Object.values(filteredData[0]);
   return createApiModel(...values);
 };
+
 export const deleteApiService = async (id) => {
   const apiExists = await getApiByIdModel(id);
-  if (!apiExists.length) throw new AppError('This api does not exist!', 404);
+  if (!apiExists.length) throw new AppError('Api não encontrada!', 404);
   return deleteApiModel(id);
 };
