@@ -11,7 +11,7 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 
 const feedbackRouter = express.Router();
 
-feedbackRouter.post('/', ensureAuthenticated, createFeedback);
+feedbackRouter.post('/', createFeedback);
 feedbackRouter.get('/', ensureAuthenticated, ensureAdmin, getAll);
 feedbackRouter.delete('/:id', ensureAuthenticated, ensureAdmin, deleteFeedback);
 feedbackRouter.patch(

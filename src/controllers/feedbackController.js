@@ -12,10 +12,19 @@ export const getAll = async (request, response) => {
 };
 
 export const createFeedback = async (request, response) => {
-  const { message } = request.body;
-  const { name, email, id } = request.user;
-
-  await createFeedbackService(message, name, email, id);
+  const { message, feedback_type } = request.body;
+  const { user } = request;
+  if (user) {
+    await createFeedbackService(
+      message,
+      feedback_type,
+      user.name,
+      user.email,
+      user.id
+    );
+  } else {
+    await createFeedbackService(message, feedback_type);
+  }
 
   response.status(201).json({ message: 'Feedback created!' });
 };
