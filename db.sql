@@ -37,7 +37,7 @@ CREATE TABLE
     url_repo VARCHAR(255) NOT NULL,
     technologies VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
-    description VARCHAR(255),
+    description VARCHAR(255) NOT NULL,
     rating INT NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
@@ -50,7 +50,7 @@ CREATE TABLE
   ratings (
     id VARCHAR(255) NOT NULL,
     rating INT NOT NULL,
-    message VARCHAR(255),
+    message VARCHAR(255) NOT NULL,
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     user_name VARCHAR(255) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE
     url_repo VARCHAR(255) NOT NULL,
     technologies VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
-    description VARCHAR(255),
+    description VARCHAR(255) NOT NULL,
     url_deploy VARCHAR(255),
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
@@ -83,11 +83,13 @@ CREATE TABLE
   feedbacks (
     id VARCHAR(255) NOT NULL,
     email VARCHAR(255),
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
     message VARCHAR(255) NOT NULL,
+    feedback_type VARCHAR(255) NOT NULL,
     isRead BOOLEAN DEFAULT FALSE,
-    user_id VARCHAR(255) NOT NULL,
+    user_id VARCHAR(255),
     created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
   ) ENGINE = INNODB;

@@ -7,13 +7,14 @@ export const getAllFeedbackModel = async () => {
 export const createFeedbackModel = async (
   id,
   message,
+  feedback_type,
   name,
   email,
   user_id
 ) => {
   await connection.query(
-    `INSERT INTO feedbacks (id, message, name, email, user_id) VALUES (?, ?, ?, ?, ?)`,
-    [id, message, name, email, user_id]
+    `INSERT INTO feedbacks (id, message, feedback_type, name, email, user_id) VALUES (?, ?, ?, ?, ?, ?)`,
+    [id, message, feedback_type, name, email, user_id]
   );
 };
 
