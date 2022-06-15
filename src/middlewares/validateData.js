@@ -5,12 +5,12 @@ const validateData = (req, res, next) => {
 
   if (!url) throw new AppError('Url é obrigatória!', 400);
 
+  if (!url.startsWith('https://github.com/'))
+    throw new AppError('A url precisa ser de um repositório do github!');
+
   if (!description) throw new AppError('Descrição é obrigatória!');
 
   if (description.length > 255) throw new AppError('Descrição muito longa!');
-
-  if (!url.startsWith('https://github.com/'))
-    throw new AppError('A url precisa ser de um repositório do github!');
 
   next();
 };
