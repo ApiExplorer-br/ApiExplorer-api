@@ -1,6 +1,7 @@
 import {
     getAllFrontService,
     createFrontService,
+    getFrontByIdService,
 } from '../services/frontService.js';
 
 
