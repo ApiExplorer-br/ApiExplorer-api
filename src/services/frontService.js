@@ -7,8 +7,9 @@ import { AppError } from '../errors/AppError.js';
 import {
     getAllFrontModel,
     createFrontModel,
-    getFrontByUrl,
-    getFrontById,
+    getFrontByUrlModel,
+    getFrontByIdModel,
+    editFrontModel,
 } from '../models/frontModel.js';
 
 export const getAllFrontService = async () => {
@@ -25,7 +26,7 @@ export const createFrontService = async (frontData, user_id) => {
         throw new AppError('Este repositório não parece ser um front-end, não encontramos HTML nem CSS.');
     }
 
-    const frontExists = await getFrontByUrl(url);
+    const frontExists = await getFrontByUrlModel(url);
     if(frontExists.length) throw new AppError('Este front-end já está cadastrado.');
 
     const filteredData = [repoData.data].map((repo) => ({
@@ -45,7 +46,16 @@ export const createFrontService = async (frontData, user_id) => {
 };
 
 export const getFrontByIdService = async (id) => {
-    const front = await getFrontById(id);
+    const front = await getFrontByIdModel(id);
     if (!front.length) throw new AppError('Front-end não encontrado!');
     return front;
-}
+};
+
+export const editFrontService = async (id, frontData) => {
+    const { name, description, url_deploy } = frontData;
+    console.log(id, name, description, url_deploy);
+    const front = await getFrontByIdModel(id);
+    if (!front.length) throw new AppError('Front-end não encontrado!');
+    const udpatedFront = await editFrontModel(id, name, description, url_deploy);
+    return udpatedFront;    
+};
