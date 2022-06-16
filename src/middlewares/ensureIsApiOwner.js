@@ -7,7 +7,7 @@ export const ensureIsApiOwner = async (request, _response, next) => {
   const api = await getApiByIdService(id);
 
   if (api && api.user_id !== userId && !admin)
-    throw new AppError('Unauthorized user', 401);
+    throw new AppError('Usuário não autorizado para atualizar esta API.', 401);
 
   next();
 };
