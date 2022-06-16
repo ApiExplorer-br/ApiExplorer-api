@@ -37,12 +37,12 @@ export const getAllApisService = async () => {
 
 export const getApiByIdService = async (id) => {
   const api = await getApiByIdModel(id);
-  const apiRating = await getApiRatingById(id);
+  const evaluations = await getApiRatingById(id);
 
   if (!api.length) throw new AppError('Api não encontrada!', 404);
   return {
     ...api[0],
-    rating: apiRating,
+    evaluations,
     technologies: JSON.parse(api[0].technologies),
   };
 };
