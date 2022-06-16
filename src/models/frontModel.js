@@ -14,4 +14,9 @@ export const createFrontModel = async (id, name, url_repo, technologies, categor
 export const getFrontByUrl = async (url) => {
     const [front] = await connection.execute(`SELECT * FROM fronts WHERE url_repo = ?`, [url]);
     return front;
-}
+};
+
+export const getFrontById = async (id) => {
+    const [front] = await connection.execute(`SELECT * FROM fronts WHERE id = ?`, [id]);
+    return front;
+};
