@@ -3,6 +3,7 @@ import express from 'express';
 import {
     createFront,
     getAllFronts,
+    getFrontById
 } from '../controllers/frontController.js';
 
 
@@ -13,10 +14,9 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 
 const frontRouter = express.Router();
 
-// ratingRouter.post('/', ensureAuthenticated, createFront);
-// ratingRouter.get('/', ensureAuthenticated, getAllFronts);
 frontRouter.post('/', ensureAuthenticated, createFront);
 frontRouter.get('/', getAllFronts);
+frontRouter.get('/:id', getFrontById);
 
 
 
