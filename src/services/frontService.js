@@ -8,6 +8,7 @@ import {
     getAllFrontModel,
     createFrontModel,
     getFrontByUrl,
+    getFrontById,
 } from '../models/frontModel.js';
 
 export const getAllFrontService = async () => {
@@ -42,3 +43,9 @@ export const createFrontService = async (frontData, user_id) => {
     
     return createFrontModel(...values);
 };
+
+export const getFrontByIdService = async (id) => {
+    const front = await getFrontById(id);
+    if (!front.length) throw new AppError('Front-end não encontrado!');
+    return front;
+}
