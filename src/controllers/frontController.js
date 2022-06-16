@@ -28,9 +28,6 @@ export const editFront = async (request, response) => {
   response.status(201).json({ message: 'Dados atualizados!' });
 };
 
-// PUT
 // DELETE
 
 // getFrontsByUser? Validar com Thiago
-
-// editFront
