@@ -8,6 +8,7 @@ import {
   getApiByUrl,
   deleteApiModel,
   getApiByUserModel,
+  editApiModel,
 } from '../models/ApisModel.js';
 import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
@@ -80,6 +81,12 @@ export const createApiService = async (
   }));
   const values = Object.values(filteredData[0]);
   return createApiModel(...values);
+};
+
+export const editApiService = async (id, category, description) => {
+  const api = await getApiByIdModel(id);
+  if (!api.length) throw new AppError('Api não encontrada!', 404);
+  return editApiModel(id, category, description);
 };
 
 export const deleteApiService = async (id) => {

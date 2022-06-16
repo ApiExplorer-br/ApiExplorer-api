@@ -43,6 +43,13 @@ export const createApiModel = async (
   );
 };
 
+export const editApiModel = async (id, category, description) => {
+  await connection.execute(
+    `UPDATE apis SET category = ?, description = ? WHERE id = ?`,
+    [category, description, id]
+  );
+};
+
 export const deleteApiModel = async (id) => {
   await connection.execute(`DELETE FROM apis WHERE id = ?`, [id]);
 };
