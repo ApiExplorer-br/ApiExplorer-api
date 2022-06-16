@@ -17,7 +17,7 @@ CREATE TABLE
     bio VARCHAR(255),
     admin BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
 
@@ -26,7 +26,7 @@ CREATE TABLE
     id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(), 
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
 
@@ -41,7 +41,7 @@ CREATE TABLE
     rating INT NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(), 
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
@@ -55,7 +55,7 @@ CREATE TABLE
     user_id VARCHAR(255) NOT NULL,
     user_name VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(), 
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (api_id) REFERENCES apis (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
@@ -73,7 +73,7 @@ CREATE TABLE
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(), 
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (api_id) REFERENCES apis (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
@@ -89,7 +89,7 @@ CREATE TABLE
     isRead BOOLEAN DEFAULT FALSE,
     user_id VARCHAR(255),
     created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     PRIMARY KEY(id)
   ) ENGINE = INNODB;

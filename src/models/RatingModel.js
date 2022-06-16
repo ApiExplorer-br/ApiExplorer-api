@@ -8,6 +8,14 @@ export const getApiRatingById = async (id) => {
   return rating;
 };
 
+export const getApiRatingByUser = async (api_id, user_id) => {
+  const [rating] = await connection.execute(
+    `SELECT * FROM ratings WHERE api_id = ? AND user_id = ?`,
+    [api_id, user_id]
+  );
+  return rating;
+};
+
 export const getRatingById = async (id) => {
   const [rating] = await connection.execute(
     `SELECT * FROM ratings WHERE id = ?`,
@@ -31,17 +39,10 @@ export const createRatingModel = async (
   return result;
 };
 
-export const editRatingModel = async (
-  id,
-  api_id,
-  rating,
-  message,
-  userId,
-  name
-) => {
+export const editRatingModel = async (id, rating, message) => {
   const result = await connection.query(
-    `UPDATE ratings SET rating = ?, message = ?, user_id = ?, user_name = ? WHERE id = ? AND api_id = ?`,
-    [rating, message, userId, name, id, api_id]
+    `UPDATE ratings SET rating = ?, message = ? WHERE id = ?`,
+    [rating, message, id]
   );
   return result;
 };
