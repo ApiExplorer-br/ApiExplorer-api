@@ -2,6 +2,7 @@ import {
     getAllFrontService,
     createFrontService,
     getFrontByIdService,
+    editFrontService
 } from '../services/frontService.js';
 
 
@@ -22,11 +23,16 @@ export const getFrontById = async (request, response) => {
     return response.status(200).json(front);
 }
 
+export const editFront = async (request, response) => {
+    const { id } = request.params;
+    await editFrontService(id, request.body);
+    response.status(201).json({ message: 'Dados atualizados!' });
+}
+
+
 // PUT
 // DELETE
 
 // getFrontsByUser? Validar com Thiago
 
-// getFrontById => ok implmementar  
-// deleteFront
 // editFront
