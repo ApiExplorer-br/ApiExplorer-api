@@ -7,7 +7,10 @@ export const ensureIsFrontOwner = async (request, _response, next) => {
   const [front] = await getFrontByIdService(id);
 
   if (front.user_id !== user_id && !admin)
-    throw new AppError('Usuário não autorizado a atualizar este front.', 401);
+    throw new AppError(
+      'Usuário não autorizado a atualizar/deletar este front.',
+      401
+    );
 
   next();
 };
