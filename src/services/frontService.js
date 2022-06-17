@@ -57,7 +57,6 @@ export const getFrontByIdService = async (id) => {
 
 export const getFrontByApiIdService = async (api_id) => {
   const front = await getFrontByApiIdModel(api_id);
-  if (!front.length) throw new AppError('Front-end não encontrado!');
   return front;
 };
 
