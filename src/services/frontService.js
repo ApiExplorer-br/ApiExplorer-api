@@ -7,6 +7,7 @@ import {
   getFrontByUrlModel,
   getFrontByIdModel,
   editFrontModel,
+  deleteFrontModel,
 } from '../models/frontModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
@@ -60,4 +61,11 @@ export const editFrontService = async (id, frontData) => {
   if (!front.length) throw new AppError('Front-end não encontrado!');
   const udpatedFront = await editFrontModel(id, name, description, url_deploy);
   return udpatedFront;
+};
+
+export const deleteFrontService = async (id) => {
+  const front = await getFrontByIdModel(id);
+  if (!front.length) throw new AppError('Front-end não encontrado!');
+  const deletedFront = await deleteFrontModel(id, null, null, null);
+  return deletedFront;
 };
