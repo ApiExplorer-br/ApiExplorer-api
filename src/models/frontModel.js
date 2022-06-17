@@ -56,3 +56,7 @@ export const editFrontModel = async (id, name, description, url_deploy) => {
     [name, description, url_deploy, id]
   );
 };
+
+export const deleteFrontModel = async (id) => {
+  await connection.execute(`DELETE FROM fronts WHERE id = ?`, [id]);
+};
