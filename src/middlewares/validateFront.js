@@ -1,9 +1,9 @@
 import { AppError } from '../errors/AppError.js';
 
 const validateFront = (req, _res, next) => {
-  const { name, category, description, url_deploy } = req.body;
+  const { name, category, description, url } = req.body;
 
-  if (!name && !category && !description && !url_deploy)
+  if (!name && !category && !description && !url)
     throw new AppError('Algum campo deve ser informado para atualização!');
 
   if ((name.length || description.length) > 255)
