@@ -13,7 +13,7 @@ import { validateFront } from '../middlewares/validateFront.js';
 
 const frontRouter = express.Router();
 
-frontRouter.post('/', ensureAuthenticated, createFront);
+frontRouter.post('/', validateFront, ensureAuthenticated, createFront);
 frontRouter.get('/', getAllFronts);
 frontRouter.get('/:id', getFrontById);
 frontRouter.put(
