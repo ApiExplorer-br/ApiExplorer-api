@@ -14,6 +14,8 @@ import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
 
+import { getFrontByApiIdService } from './frontService.js';
+
 export const getAllApisService = async () => {
   const apis = await getAllApiModel();
 
@@ -37,11 +39,13 @@ export const getAllApisService = async () => {
 
 export const getApiByIdService = async (id) => {
   const api = await getApiByIdModel(id);
+  const fronts = await getFrontByApiIdService(id);
   const evaluations = await getApiRatingById(id);
 
   if (!api.length) throw new AppError('Api não encontrada!', 404);
   return {
     ...api[0],
+    fronts,
     evaluations,
     technologies: JSON.parse(api[0].technologies),
   };

@@ -16,7 +16,6 @@ export const createFrontModel = async (
   api_id,
   user_id
 ) => {
-  // console.log(id, name, url_repo, technologies, category, description, url_deploy, api_id, user_id)
   const front = await connection.execute(
     `INSERT INTO fronts (id, name, url_repo, technologies, category, description, url_deploy, api_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
@@ -59,4 +58,12 @@ export const editFrontModel = async (id, name, description, url_deploy) => {
 
 export const deleteFrontModel = async (id) => {
   await connection.execute(`DELETE FROM fronts WHERE id = ?`, [id]);
+};
+
+export const getFrontByApiIdModel = async (api_id) => {
+  const [front] = await connection.execute(
+    `SELECT * FROM fronts WHERE api_id = ?`,
+    [api_id]
+  );
+  return front;
 };
