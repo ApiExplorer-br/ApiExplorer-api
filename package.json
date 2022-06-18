@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:mocha": "nyc --all --include models --include services --include controllers mocha test/unit/**/*.js --exit",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint --ext .js --ignore-path .gitignore ."
@@ -22,6 +23,8 @@
   "homepage": "https://github.com/Laecio12/api#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -30,7 +33,9 @@
     "express-async-errors": "^3.1.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
     "mysql2": "^2.3.3",
+    "sinon": "^14.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -40,6 +45,7 @@
     "eslint-plugin-import-helpers": "^1.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.16",
+    "nyc": "^15.1.0",
     "prettier": "^2.6.2",
     "yarn": "^1.22.18"
   }
