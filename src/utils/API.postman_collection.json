@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "9f3e7b2c-745d-4379-9dc6-3379b1bb67f3",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20953724"
+	},
+	"item": [
+		{
+			"name": "Post Front",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"https://github.com/paolofullone/Trivia\",\r\n    \"category\": \"Anime\",\r\n    \"api_id\": \"76c569dc-18c1-4d6b-bfd7-cf12d9d3bbc9\",\r\n    \"description\": \"descrição teste\",\r\n    \"url_deploy\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/fronts",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"fronts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Apis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3333/apis",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"apis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"url\": \"https://github.com/Laecio12/desafio-nodejs-upload\",\r\n\t\"category\":\"service\",\r\n\t\"description\": \"api\",\r\n\t\"user_id\": \"afbf3b6b-26e6-4167-801f-ba538aa35c6b\",\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/apis",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"apis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Rating",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": 2, \r\n    \"message\": \"avaliação do postman2\",   \r\n    \"api_id\": \"76c569dc-18c1-4d6b-bfd7-cf12d9d3bbc9\"    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/rating",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"rating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fronts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3333/fronts",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"fronts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"05bf4f5a-00da-4148-8c16-93d566c9664c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/users/refresh-token",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"users",
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Front by Id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Front",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Front",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

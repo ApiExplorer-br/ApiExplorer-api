@@ -3,9 +3,9 @@ import express from 'express';
 import { apiRouter } from './apiRouter.js';
 import { categoryRouter } from './categoryRouter.js';
 import { feedbackRouter } from './feedbackRouter.js';
+import { frontRouter } from './frontRouter.js';
 import { ratingRouter } from './ratingRouter.js';
 import { userRouter } from './userRouter.js';
-import { frontRouter } from './frontRouter.js';
 
 const router = express.Router();
 

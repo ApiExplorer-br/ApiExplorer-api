@@ -5,6 +5,7 @@ import {
   getAllFronts,
   getFrontById,
   editFront,
+  deleteFront,
 } from '../controllers/frontController.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 import { ensureIsFrontOwner } from '../middlewares/ensureIsFrontOwner.js';
@@ -12,7 +13,7 @@ import { validateFront } from '../middlewares/validateFront.js';
 
 const frontRouter = express.Router();
 
-frontRouter.post('/', ensureAuthenticated, createFront);
+frontRouter.post('/', validateFront, ensureAuthenticated, createFront);
 frontRouter.get('/', getAllFronts);
 frontRouter.get('/:id', getFrontById);
 frontRouter.put(
@@ -21,6 +22,12 @@ frontRouter.put(
   ensureIsFrontOwner,
   validateFront,
   editFront
+);
+frontRouter.delete(
+  '/:id',
+  ensureAuthenticated,
+  ensureIsFrontOwner,
+  deleteFront
 );
 
 export { frontRouter };

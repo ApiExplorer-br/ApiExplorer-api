@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 
 import { AppError } from '../errors/AppError.js';
 import {
@@ -7,6 +7,8 @@ import {
   getFrontByUrlModel,
   getFrontByIdModel,
   editFrontModel,
+  deleteFrontModel,
+  getFrontByApiIdModel,
 } from '../models/frontModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
@@ -32,7 +34,7 @@ export const createFrontService = async (frontData, user_id) => {
     throw new AppError('Este front-end já está cadastrado.');
 
   const filteredData = [repoData.data].map((repo) => ({
-    id: uuidv4(),
+    id: randomUUID(),
     name: repo.name,
     url_repo: repo.html_url,
     technologies: JSON.stringify(technologies),
@@ -53,11 +55,22 @@ export const getFrontByIdService = async (id) => {
   return front;
 };
 
+export const getFrontByApiIdService = async (api_id) => {
+  const front = await getFrontByApiIdModel(api_id);
+  return front;
+};
+
 export const editFrontService = async (id, frontData) => {
   const { name, description, url_deploy } = frontData;
-  console.log(id, name, description, url_deploy);
   const front = await getFrontByIdModel(id);
   if (!front.length) throw new AppError('Front-end não encontrado!');
   const udpatedFront = await editFrontModel(id, name, description, url_deploy);
   return udpatedFront;
+};
+
+export const deleteFrontService = async (id) => {
+  const front = await getFrontByIdModel(id);
+  if (!front.length) throw new AppError('Front-end não encontrado!');
+  const deletedFront = await deleteFrontModel(id, null, null, null);
+  return deletedFront;
 };
