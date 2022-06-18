@@ -61,10 +61,14 @@ export const getFrontByApiIdService = async (api_id) => {
 };
 
 export const editFrontService = async (id, frontData) => {
-  const { name, description, url_deploy } = frontData;
+  console.log('entrou na description service');
+  let { description, url_deploy } = frontData;
+  if (description === undefined) description = null;
+  if (url_deploy === undefined) url_deploy = null;
+  console.log('descritption na editfrontservice', description);
   const front = await getFrontByIdModel(id);
   if (!front.length) throw new AppError('Front-end não encontrado!');
-  const udpatedFront = await editFrontModel(id, name, description, url_deploy);
+  const udpatedFront = await editFrontModel(id, description, url_deploy);
   return udpatedFront;
 };
 

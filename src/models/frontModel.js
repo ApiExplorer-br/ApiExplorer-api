@@ -49,11 +49,12 @@ export const getFrontByIdModel = async (id) => {
   return front;
 };
 
-export const editFrontModel = async (id, name, description, url_deploy) => {
-  await connection.execute(
-    `UPDATE fronts SET name = ?, description = ?, url_deploy = ? WHERE id = ?`,
-    [name, description, url_deploy, id]
+export const editFrontModel = async (id, description, url_deploy) => {
+  const [updatedFront] = await connection.execute(
+    `UPDATE fronts SET description = ?, url_deploy = ? WHERE id = ?`,
+    [description, url_deploy, id]
   );
+  return updatedFront;
 };
 
 export const deleteFrontModel = async (id) => {
