@@ -39,7 +39,7 @@ export const createApi = async (request, response) => {
 
   await createApiService(userRepo, category, description, url, id);
 
-  response.status(201).json({ message: 'API created successfully' });
+  response.status(201).json({ message: 'Api criada!' });
 };
 
 export const editApi = async (request, response) => {
