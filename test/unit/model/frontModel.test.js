@@ -8,7 +8,7 @@ import { connection } from '../../../src/db/index.js';
 import {
   getAllFrontModel,
   createFrontModel,
-  getFrontByUrlModel,
+  getFrontByUrlModel, // parei aqui, onde está sendo usada esta url?
   getFrontByIdModel,
   editFrontModel,
   deleteFrontModel,
@@ -54,6 +54,7 @@ describe('Testing the frontend model layer', () => {
         'created_at',
         'updated_at'
       );
+      expect(result.url_repo).to.be.eql(front[0].url_repo);
     });
   });
   describe('createFrontModel', () => {
@@ -89,6 +90,80 @@ describe('Testing the frontend model layer', () => {
         'created_at',
         'updated_at'
       );
+    });
+  });
+  describe('getFrontByUrlModel', () => {
+    beforeEach(() => {
+      sinon.stub(connection, 'execute').resolves([front], []);
+    });
+    afterEach(() => {
+      connection.execute.restore();
+    });
+    it('should return a front by url', async () => {
+      const [result] = await getFrontByUrlModel(
+        'https://github.com/paolofullone/Trivia'
+      );
+      expect(result).to.be.eql(front[0]);
+      expect(result).to.include.all.keys(
+        'id',
+        'name',
+        'url_repo',
+        'technologies',
+        'category',
+        'description',
+        'url_deploy',
+        'api_id',
+        'user_id',
+        'created_at',
+        'updated_at'
+      );
+    });
+  });
+
+  describe('getFrontByIdModel', () => {
+    beforeEach(() => {
+      sinon.stub(connection, 'execute').resolves([front], []);
+    });
+    afterEach(() => {
+      connection.execute.restore();
+    });
+    it('should return a front by id', async () => {
+      const [result] = await getFrontByIdModel(
+        '01c946f1-1fb6-484d-b4a2-de176dc1a6c7'
+      );
+      expect(result).to.be.eql(front[0]);
+      expect(result).to.include.all.keys(
+        'id',
+        'name',
+        'url_repo',
+        'technologies',
+        'category',
+        'description',
+        'url_deploy',
+        'api_id',
+        'user_id',
+        'created_at',
+        'updated_at'
+      );
+    });
+  });
+
+  describe('editFrontModel', () => {
+    beforeEach(() => {
+      sinon.stub(connection, 'execute').resolves([front], []);
+    });
+    afterEach(() => {
+      connection.execute.restore();
+    });
+    it('should edit a front', async () => {
+      const result = await editFrontModel(
+        '01c946f1-1fb6-484d-b4a2-de176dc1a6c7',
+        'Trivia',
+        'new description',
+        'www.meudeploy.com/Tribia'
+      );
+      // console.log(result);
+      expect(result).to.be.eql(front);
     });
   });
 });

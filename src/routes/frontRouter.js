@@ -12,6 +12,7 @@ import {
 import { addImage } from '../controllers/uploadController.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 import { ensureIsFrontOwner } from '../middlewares/ensureIsFrontOwner.js';
+import { validateEditFront } from '../middlewares/validateEditFront.js';
 import { validateFront } from '../middlewares/validateFront.js';
 
 const frontRouter = express.Router();
@@ -23,7 +24,7 @@ frontRouter.put(
   '/:id',
   ensureAuthenticated,
   ensureIsFrontOwner,
-  validateFront,
+  validateEditFront,
   editFront
 );
 frontRouter.delete(
