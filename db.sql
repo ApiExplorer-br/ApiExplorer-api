@@ -70,6 +70,7 @@ CREATE TABLE
     category VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     url_deploy VARCHAR(255),
+    url_img VARCHAR(255),
     api_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT NOW(),
