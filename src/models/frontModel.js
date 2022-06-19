@@ -13,11 +13,12 @@ export const createFrontModel = async (
   category,
   description,
   url_deploy,
+  url_img,
   api_id,
   user_id
 ) => {
   const front = await connection.execute(
-    `INSERT INTO fronts (id, name, url_repo, technologies, category, description, url_deploy, api_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO fronts (id, name, url_repo, technologies, category, description, url_deploy, url_img, api_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       id,
       name,
@@ -26,6 +27,7 @@ export const createFrontModel = async (
       category,
       description,
       url_deploy,
+      url_img,
       api_id,
       user_id,
     ]

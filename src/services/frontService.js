@@ -19,7 +19,7 @@ export const getAllFrontService = async () => {
 };
 
 export const createFrontService = async (frontData, user_id) => {
-  const { url, description, url_deploy, category, api_id } = frontData;
+  const { url, description, url_deploy, url_img, category, api_id } = frontData;
   const userRepo = url.split('.com/')[1];
   const technologies = await getLanguages(userRepo);
   const repoData = await apiGithub.get(`/${userRepo}`);
@@ -41,6 +41,7 @@ export const createFrontService = async (frontData, user_id) => {
     category,
     description,
     url_deploy: url_deploy || repo.homepage,
+    url_img,
     api_id,
     user_id,
   }));
