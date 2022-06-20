@@ -33,6 +33,11 @@ export const createFrontService = async (frontData, user_id) => {
   if (frontExists.length)
     throw new AppError('Este front-end já está cadastrado.');
 
+  let { homepage } = repoData;
+  if (!url_deploy && !homepage.includes('http')) {
+    homepage = `https//${homepage}`;
+  }
+
   const filteredData = [repoData.data].map((repo) => ({
     id: randomUUID(),
     name: repo.name,
@@ -40,7 +45,7 @@ export const createFrontService = async (frontData, user_id) => {
     technologies: JSON.stringify(technologies),
     category,
     description,
-    url_deploy: url_deploy || repo.homepage,
+    url_deploy: url_deploy || homepage,
     url_img,
     api_id,
     user_id,
@@ -66,7 +71,6 @@ export const editFrontService = async (id, frontData) => {
   let { description, url_deploy } = frontData;
   if (description === undefined) description = null;
   if (url_deploy === undefined) url_deploy = null;
-  console.log('descritption na editfrontservice', description);
   const front = await getFrontByIdModel(id);
   if (!front.length) throw new AppError('Front-end não encontrado!');
   const udpatedFront = await editFrontModel(id, description, url_deploy);
