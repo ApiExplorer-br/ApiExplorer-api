@@ -9,6 +9,7 @@ import {
   editFrontModel,
   deleteFrontModel,
   getFrontByApiIdModel,
+  addImageFrontModel,
 } from '../models/frontModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
@@ -22,7 +23,6 @@ export const createFrontService = async (frontData, user_id) => {
   const { url, description, url_deploy, url_img, category, api_id } = frontData;
   const userRepo = url.split('.com/')[1];
   const technologies = await getLanguages(userRepo);
-  console.log(technologies);
   const repoData = await apiGithub.get(`/${userRepo}`);
   if (!technologies.includes('HTML')) {
     throw new AppError(
@@ -35,7 +35,7 @@ export const createFrontService = async (frontData, user_id) => {
     throw new AppError('Este front-end já está cadastrado.');
 
   let { homepage } = repoData.data;
-  if (!url_deploy && !homepage.includes('http')) {
+  if (!url_deploy && homepage && !homepage.includes('http')) {
     homepage = `https://${homepage}`;
   }
 
@@ -67,8 +67,11 @@ export const getFrontByApiIdService = async (api_id) => {
   return front;
 };
 
+export const addImageFrontService = async (url_img, id) => {
+  await addImageFrontModel(url_img, id);
+};
+
 export const editFrontService = async (id, frontData) => {
-  console.log('entrou na description service');
   let { description, url_deploy } = frontData;
   if (description === undefined) description = null;
   if (url_deploy === undefined) url_deploy = null;

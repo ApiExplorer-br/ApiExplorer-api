@@ -17,7 +17,7 @@ export const createFrontModel = async (
   api_id,
   user_id
 ) => {
-  const front = await connection.execute(
+  await connection.execute(
     `INSERT INTO fronts (id, name, url_repo, technologies, category, description, url_deploy, url_img, api_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       id,
@@ -32,7 +32,7 @@ export const createFrontModel = async (
       user_id,
     ]
   );
-  return front;
+  return id;
 };
 
 export const getFrontByUrlModel = async (url) => {
@@ -48,6 +48,15 @@ export const getFrontByIdModel = async (id) => {
     `SELECT * FROM fronts WHERE id = ?`,
     [id]
   );
+  return front;
+};
+
+export const addImageFrontModel = async (url_img, id) => {
+  const [front] = await connection.execute(
+    `UPDATE fronts SET url_img = ? WHERE id = ?`,
+    [url_img, id]
+  );
+
   return front;
 };
 

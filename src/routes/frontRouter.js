@@ -33,6 +33,6 @@ frontRouter.delete(
   ensureIsFrontOwner,
   deleteFront
 );
-frontRouter.post('/upload', muter(multerConfig).single('file'), addImage);
+frontRouter.post('/upload/:id', muter(multerConfig).single('file'), addImage);
 
 export { frontRouter };

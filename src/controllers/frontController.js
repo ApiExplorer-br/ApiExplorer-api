@@ -13,8 +13,8 @@ export const getAllFronts = async (request, response) => {
 
 export const createFront = async (request, response) => {
   const { id: user_id } = request.user;
-  await createFrontService(request.body, user_id);
-  response.status(201).json({ message: 'Front cadastrado com sucesso' });
+  const id = await createFrontService(request.body, user_id);
+  response.status(201).json({ message: 'Front cadastrado com sucesso', id });
 };
 
 export const getFrontById = async (request, response) => {
