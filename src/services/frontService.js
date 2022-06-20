@@ -25,7 +25,7 @@ export const createFrontService = async (frontData, user_id) => {
   const repoData = await apiGithub.get(`/${userRepo}`);
   if (!technologies.includes('HTML')) {
     throw new AppError(
-      'Este repositório não parece ser um front-end, não encontramos HTML nem CSS.'
+      'Este repositório não parece ser um front-end, não encontramos nenhum arquivo HTML.'
     );
   }
 
