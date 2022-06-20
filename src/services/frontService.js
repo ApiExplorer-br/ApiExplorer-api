@@ -33,9 +33,9 @@ export const createFrontService = async (frontData, user_id) => {
   if (frontExists.length)
     throw new AppError('Este front-end já está cadastrado.');
 
-  let { homepage } = repoData;
+  let { homepage } = repoData.data;
   if (!url_deploy && !homepage.includes('http')) {
-    homepage = `https//${homepage}`;
+    homepage = `https://${homepage}`;
   }
 
   const filteredData = [repoData.data].map((repo) => ({
