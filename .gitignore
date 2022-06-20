@@ -2,6 +2,6 @@
 node_modules
 yarn-error.log
 settings.json
-
+/tmp
 # nyc test coverage
 .nyc_output
