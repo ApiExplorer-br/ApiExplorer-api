@@ -45,7 +45,7 @@ export const getFrontByUrlModel = async (url) => {
 
 export const getFrontByIdModel = async (id) => {
   const [front] = await connection.execute(
-    `SELECT * FROM fronts WHERE id = ?`,
+    `SELECT A.category, F.*  FROM fronts AS F JOIN apis AS A ON A.id=F.api_id WHERE F.id = ?`,
     [id]
   );
   return front;
