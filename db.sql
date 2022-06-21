@@ -61,21 +61,6 @@ CREATE TABLE
     PRIMARY KEY(id)
   ) ENGINE = INNODB;
 
-  CREATE TABLE
-  ratingsFront (
-    id VARCHAR(255) NOT NULL,
-    rating INT NOT NULL,
-    message VARCHAR(255) NOT NULL,
-    front_id VARCHAR(255) NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    user_name VARCHAR(255) NOT NULL,
-    created_at DATETIME DEFAULT NOW(),
-    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW(),
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (front_id) REFERENCES fronts (id) ON DELETE CASCADE,
-    PRIMARY KEY(id)
-  ) ENGINE = INNODB;
-
 CREATE TABLE
   fronts (
     id VARCHAR(255) NOT NULL,
