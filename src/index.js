@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://www.apiexplorer.com.br/',
+    origin: 'https://www.apiexplorer.com.br',
   })
 );
 app.use(router);
