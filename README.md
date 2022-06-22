@@ -1,5 +1,10 @@
+# Front-end 
+https://www.apiexplorer.com.br/
 
-# BackEnd do projeto API Explorer
+#
+
+
+# Sobre
 
 Projeto realizado durante o curso de formação fullstack da Trybe que tem o objetivo de listar API's públicas por categorias e frontends construídos com base nas APIs.
 
@@ -30,12 +35,12 @@ Códigos gerado no site: https://s3.console.aws.amazon.com/s3/
 `AWS_SECRET_ACCESS=`\
 `AWS_DEFAULT_REGION=`\
 `BUCKET_NAME=`\
-`STORAGE_TYPE=s3`\
+`STORAGE_TYPE=s3`
 
 
 ## Feedback
 
-Se você tiver algum feedback, por favor nos deixe saber por meio da página www.xxx.xxx seção feedback.
+Se você tiver algum feedback, por favor nos deixe saber por meio da página seção feedback.
 
 
 ## Rodando localmente
