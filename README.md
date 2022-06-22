@@ -30,7 +30,7 @@ Códigos gerados no site: https://github.com/settings/developers \
 Código gerado no site: https://www.md5hashgenerator.com/ \
 `JWT_SECRET=` 
 
-Códigos gerado no site: https://s3.console.aws.amazon.com/s3/
+Códigos gerado no site: https://s3.console.aws.amazon.com/s3/ \
 `AWS_ACCESS_KEY_ID=`\
 `AWS_SECRET_ACCESS=`\
 `AWS_DEFAULT_REGION=`\
