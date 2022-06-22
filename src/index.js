@@ -8,7 +8,11 @@ import { router } from './routes/index.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://www.apiexplorer.com.br/',
+  })
+);
 app.use(router);
 app.use((err, _request, response, next) => {
   if (err instanceof AppError) {
