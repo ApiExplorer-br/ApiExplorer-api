@@ -17,7 +17,7 @@ export const addImage = async (request, response) => {
 };
 
 export const deleteImage = async (request, response) => {
-  const { Key } = request.params;
-  const message  = await deleteFileFromS3(Key);
-  response.status(200).json({ message });
+  const { Key } = request.query;
+  await deleteFileFromS3(Key);
+  response.status(204).send();
 } 

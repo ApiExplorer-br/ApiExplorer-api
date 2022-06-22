@@ -27,13 +27,27 @@ frontRouter.put(
   validateEditFront,
   editFront
 );
+
 frontRouter.delete(
   '/:id',
   ensureAuthenticated,
   ensureIsFrontOwner,
   deleteFront
 );
-frontRouter.put('/image/:id', muter(multerConfig).single('file'), addImage);
-frontRouter.delete('/image/:Key', deleteImage);
+
+frontRouter.put(
+  '/image/:id',
+  ensureAuthenticated,
+  ensureIsFrontOwner,
+  muter(multerConfig).single('file'),
+  addImage
+);
+
+frontRouter.delete(
+  '/image/:id',
+  ensureAuthenticated,
+  ensureIsFrontOwner,
+  deleteImage
+);
 
 export { frontRouter };
