@@ -6,7 +6,7 @@ Projeto realizado durante o curso de formação fullstack da Trybe que tem o obj
 
 ## Referência
 
- - [Repositório frontend](https://github.com/thiagodanobrega/api-explorer)
+ - [Repositório frontend](https://github.com/ApiExplorer-br/ApiExplorer-front)
 
 ## Variáveis de Ambiente
 
@@ -22,8 +22,15 @@ Códigos gerados no site: https://github.com/settings/developers \
 `GITHUB_CLIENT_ID=`\
 `GITHUB_CLIENT_SECRET=`
 
-Cógido gerado no site https://www.md5hashgenerator.com/ \
+Código gerado no site: https://www.md5hashgenerator.com/ \
 `JWT_SECRET=` 
+
+Códigos gerado no site: https://s3.console.aws.amazon.com/s3/
+`AWS_ACCESS_KEY_ID=`\
+`AWS_SECRET_ACCESS=`\
+`AWS_DEFAULT_REGION=`\
+`BUCKET_NAME=`\
+`STORAGE_TYPE=s3`\
 
 
 ## Feedback
@@ -36,7 +43,7 @@ Se você tiver algum feedback, por favor nos deixe saber por meio da página www
 Clone o projeto
 
 ```bash
-  git clone git@github.com:Laecio12/api.git
+  git clone git@github.com:ApiExplorer-br/ApiExplorer-api.git
 ```
 
 Entre no diretório do projeto
@@ -60,7 +67,7 @@ Inicie o servidor
 
 ## Stack utilizada
 
-**Front-end:** Next, Redux, TailwindCSS
+**Front-end:** Next, Context API, TailwindCSS
 
 **Back-end:** Node, Express
 
