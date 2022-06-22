@@ -9,7 +9,7 @@ import {
   editFront,
   deleteFront,
 } from '../controllers/frontController.js';
-import { addImage } from '../controllers/uploadController.js';
+import { addImage, deleteImage } from '../controllers/uploadController.js';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated.js';
 import { ensureIsFrontOwner } from '../middlewares/ensureIsFrontOwner.js';
 import { validateEditFront } from '../middlewares/validateEditFront.js';
@@ -33,6 +33,7 @@ frontRouter.delete(
   ensureIsFrontOwner,
   deleteFront
 );
-frontRouter.post('/upload/:id', muter(multerConfig).single('file'), addImage);
+frontRouter.put('/image/:id', muter(multerConfig).single('file'), addImage);
+frontRouter.delete('/image/:Key', deleteImage);
 
 export { frontRouter };
