@@ -64,10 +64,6 @@ export const createApiService = async (
 ) => {
   const technologies = await getLanguages(userRepo);
 
-  if (technologies.includes('HTML') || technologies.includes('CSS')) {
-    throw new AppError('Esse repositório parece ser um front-end!');
-  }
-
   const apiExists = await getApiByUrl(url);
   if (apiExists.length)
     throw new AppError('Esse repositório já está cadastrado!', 409);
