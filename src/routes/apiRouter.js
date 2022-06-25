@@ -6,7 +6,6 @@ import {
   getApiByCategory,
   getApiById,
   deleteApi,
-  getApiByUser,
   editApi,
 } from '../controllers/apiControllers.js';
 import { ensureAdmin } from '../middlewares/ensureAdmin.js';
@@ -17,7 +16,6 @@ import { validateData } from '../middlewares/validateData.js';
 const apiRouter = express.Router();
 
 apiRouter.get('/', getAllApis);
-apiRouter.get('/by-user', ensureAuthenticated, getApiByUser);
 apiRouter.get('/:id', getApiById);
 apiRouter.get('/category/:id', getApiByCategory);
 apiRouter.post('/', ensureAuthenticated, validateData, createApi);

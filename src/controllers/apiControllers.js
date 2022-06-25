@@ -3,7 +3,6 @@ import {
   getAllApisService,
   getApiByIdService,
   deleteApiService,
-  getApiByUserService,
   editApiService,
 } from '../services/apisService.js';
 
@@ -23,13 +22,6 @@ export const getApiById = async (request, response) => {
   const { id } = request.params;
   const api = await getApiByIdService(id);
   return response.status(200).json(api);
-};
-
-export const getApiByUser = async (request, response) => {
-  const { id } = request.user;
-  const apis = await getApiByUserService(id);
-
-  return response.status(200).json(apis);
 };
 
 export const createApi = async (request, response) => {

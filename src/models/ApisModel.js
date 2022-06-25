@@ -20,14 +20,6 @@ export const getApiByUrl = async (url) => {
   return api;
 };
 
-export const getApiByUserModel = async (userId) => {
-  const [apis] = await connection.execute(
-    `SELECT * FROM apis WHERE user_id = ?`,
-    [userId]
-  );
-  return apis;
-};
-
 export const createApiModel = async (
   id,
   name,

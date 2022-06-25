@@ -7,7 +7,6 @@ import {
   getApiByIdModel,
   getApiByUrl,
   deleteApiModel,
-  getApiByUserModel,
   editApiModel,
 } from '../models/ApisModel.js';
 import { getApiRatingById } from '../models/RatingModel.js';
@@ -49,11 +48,6 @@ export const getApiByIdService = async (id) => {
     evaluations,
     technologies: JSON.parse(api[0].technologies),
   };
-};
-
-export const getApiByUserService = async (userId) => {
-  const apis = await getApiByUserModel(userId);
-  return apis;
 };
 
 export const createApiService = async (
