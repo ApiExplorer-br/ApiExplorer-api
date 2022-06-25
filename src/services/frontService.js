@@ -30,11 +30,6 @@ export const createFrontService = async (frontData, user_id) => {
   const userRepo = url.split('.com/')[1];
   const technologies = await getLanguages(userRepo);
   const repoData = await apiGithub.get(`/${userRepo}`);
-  if (!technologies.includes('HTML')) {
-    throw new AppError(
-      'Este repositório não parece ser um front-end, não encontramos HTML.'
-    );
-  }
 
   const frontExists = await getFrontByUrlModel(url);
   if (frontExists.length)
