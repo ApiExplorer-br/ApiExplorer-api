@@ -7,9 +7,20 @@ import { AppError } from './errors/AppError.js';
 import { router } from './routes/index.js';
 
 const app = express();
-app.use(express.json());
+const urlOrigin = 'https://www.apiexplorer.com.br';
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (urlOrigin.includes(origin)) {
+        callback(null, true);
+      } else {
+        throw new AppError('Not allowed by CORS', 403);
+      }
+    },
+  })
+);
 
-app.use(cors());
+app.use(express.json());
 app.use(router);
 app.use((err, _request, response, next) => {
   if (err instanceof AppError) {
