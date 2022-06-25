@@ -51,6 +51,14 @@ export const getFrontByIdModel = async (id) => {
   return front;
 };
 
+export const getFrontsByUserModel = async (userId) => {
+  const [apis] = await connection.execute(
+    `SELECT * FROM fronts WHERE user_id = ?`,
+    [userId]
+  );
+  return apis;
+};
+
 export const addImageFrontModel = async (url_img, id) => {
   const [front] = await connection.execute(
     `UPDATE fronts SET url_img = ? WHERE id = ?`,

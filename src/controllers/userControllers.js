@@ -5,12 +5,19 @@ import {
   getAllUsersService,
   getUserByIdService,
   editProfileService,
+  getAllProjectsUsersService,
 } from '../services/userService.js';
 
 export const getAll = async (_request, response) => {
   const users = await getAllUsersService();
 
   return response.status(200).send(users);
+};
+
+export const getAllProjects = async (request, response) => {
+  const { id } = request.user;
+  const projects = await getAllProjectsUsersService(id);
+  response.status(200).send(projects);
 };
 
 export const getById = async (request, response) => {

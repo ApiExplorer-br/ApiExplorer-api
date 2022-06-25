@@ -10,6 +10,7 @@ import {
   deleteFrontModel,
   getFrontByApiIdModel,
   addImageFrontModel,
+  getFrontsByUserModel,
 } from '../models/frontModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
 import { getLanguages } from '../utils/getLanguages.js';
@@ -17,6 +18,11 @@ import { getLanguages } from '../utils/getLanguages.js';
 export const getAllFrontService = async () => {
   const fronts = await getAllFrontModel();
   return fronts;
+};
+
+export const getFrontByUserService = async (userId) => {
+  const apis = await getFrontsByUserModel(userId);
+  return apis;
 };
 
 export const createFrontService = async (frontData, user_id) => {

@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 import { AppError } from '../errors/AppError.js';
+import { getFrontsByUserModel } from '../models/frontModel.js';
 import {
   createUserModel,
   deleteUserModel,
@@ -11,6 +12,7 @@ import {
 } from '../models/UserModel.js';
 import { getUserData } from '../utils/apiGithub.js';
 
+import { getApiByUserService } from './apisService.js';
 import { generateJWT } from './auth/generateJWT.js';
 
 export const getUserByUrlGithub = (urlGithub) => getByUrlGithub(urlGithub);
@@ -19,6 +21,12 @@ export const getAllUsersService = async () => {
   const users = await getAllUsersModel();
   users.sort((a, b) => a.name.localeCompare(b.name));
   return users;
+};
+
+export const getAllProjectsUsersService = async (id) => {
+  const apis = await getApiByUserService(id);
+  const fronts = await getFrontsByUserModel(id);
+  return { apis, fronts };
 };
 
 export const getUserByIdService = async (id) => {
