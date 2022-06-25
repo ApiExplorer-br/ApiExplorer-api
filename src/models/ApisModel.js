@@ -4,6 +4,13 @@ export const getAllApiModel = async () => {
   const [apis] = await connection.execute(`SELECT * FROM apis`);
   return apis;
 };
+export const getApisByUserModel = async (userId) => {
+  const [apis] = await connection.execute(
+    `SELECT * FROM apis WHERE user_id = ?`,
+    [userId]
+  );
+  return apis;
+};
 
 export const getApiByIdModel = async (id) => {
   const [api] = await connection.execute(`SELECT * FROM apis WHERE id = ?`, [

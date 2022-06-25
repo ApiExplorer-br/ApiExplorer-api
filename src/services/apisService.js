@@ -8,6 +8,7 @@ import {
   getApiByUrl,
   deleteApiModel,
   editApiModel,
+  getApisByUserModel,
 } from '../models/ApisModel.js';
 import { getApiRatingById } from '../models/RatingModel.js';
 import { apiGithub } from '../utils/apiGithub.js';
@@ -36,6 +37,10 @@ export const getAllApisService = async () => {
   return api;
 };
 
+export const getApisByUserService = async (userId) => {
+  const apis = await getApisByUserModel(userId);
+  return apis;
+};
 export const getApiByIdService = async (id) => {
   const api = await getApiByIdModel(id);
   const fronts = await getFrontByApiIdService(id);

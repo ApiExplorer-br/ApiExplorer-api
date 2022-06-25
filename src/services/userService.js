@@ -12,7 +12,7 @@ import {
 } from '../models/UserModel.js';
 import { getUserData } from '../utils/apiGithub.js';
 
-import { getApiByUserService } from './apisService.js';
+import { getApisByUserService } from './apisService.js';
 import { generateJWT } from './auth/generateJWT.js';
 
 export const getUserByUrlGithub = (urlGithub) => getByUrlGithub(urlGithub);
@@ -24,7 +24,7 @@ export const getAllUsersService = async () => {
 };
 
 export const getAllProjectsUsersService = async (id) => {
-  const apis = await getApiByUserService(id);
+  const apis = await getApisByUserService(id);
   const fronts = await getFrontsByUserModel(id);
   return { apis, fronts };
 };
