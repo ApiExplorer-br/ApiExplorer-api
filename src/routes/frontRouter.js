@@ -43,11 +43,6 @@ frontRouter.put(
   addImage
 );
 
-frontRouter.delete(
-  '/image/:id',
-  ensureAuthenticated,
-  ensureIsFrontOwner,
-  deleteImage
-);
+frontRouter.delete('/image/:id', ensureAuthenticated, deleteImage);
 
 export { frontRouter };
