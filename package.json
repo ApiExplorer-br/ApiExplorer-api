@@ -16,7 +16,7 @@
     "url": "git+ssh://git@github.com/Laecio12/api.git"
   },
   "author": "laecio12",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Laecio12/api/issues"
   },
